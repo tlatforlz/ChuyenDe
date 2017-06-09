@@ -76,6 +76,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QL_THUVIENDataSet.cs">
+      <DependentUpon>QL_THUVIENDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="QL_THUVIENDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
