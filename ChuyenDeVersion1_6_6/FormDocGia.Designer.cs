@@ -1,6 +1,6 @@
 ﻿namespace ChuyenDeVersion1_6_6
 {
-    partial class FormSach
+    partial class FormDocGia
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // FormSach
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(733, 418);
-            this.Name = "FormSach";
-            this.Text = "FormSach";
-            this.ResumeLayout(false);
-
+            this.Text = "FormDocGia";
         }
 
         #endregion
