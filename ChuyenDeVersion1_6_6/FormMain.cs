@@ -20,7 +20,13 @@ namespace ChuyenDeVersion1_6_6
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-
+            if(Program.username == "")
+            {
+                this.ribbonPageDanhMuc.Visible = false;
+                this.ribbonPageGroupSaoLuu.Visible = false;
+                this.ribbonPageGroupTaoTaiKhoan.Visible = false;
+                barButtonItemDangXuat.Links[0].Visible = false;
+            }
         }
 
         private void xtraTabControl_CloseButtonClick(object sender, EventArgs e)
@@ -59,7 +65,6 @@ namespace ChuyenDeVersion1_6_6
             {
                 TabControl.SelectedTabPage = TabControl.TabPages[Index];
                 TabControl.SelectedTabPage.Text = Text;
-
             }
             else
             {
@@ -83,19 +88,22 @@ namespace ChuyenDeVersion1_6_6
             toolStripStatusLabelNhom.Text = "Nhóm : " + Program.mGroup;
             // Phân quyền
 
-            //if (Program.mGroup == "USER")
-            //{
-            //    this.ribbonPageGroupNV.Visible = false;
-            //    this.ribbonPageGroupTaoTaiKhoan.Visible = false;
-            //}
-            //else
-            //{
-            //    this.ribbonPageGroupNV.Visible = true;
-            //    this.ribbonPageGroupTaoTaiKhoan.Visible = true;
-            //}
+            if (Program.mGroup == "ADMIN")
+            {
+                // this.ribbonPageGroupNV.Visible = false;
+                this.ribbonPageGroupTaoTaiKhoan.Visible = true;
+                this.ribbonPageGroupSaoLuu.Visible = true;
+            }
+            if (Program.mGroup == "NHANVIEN")
+            {   
+               // this.ribbonPageGroupNV.Visible = true;
+                this.ribbonPageGroupTaoTaiKhoan.Visible = true;
+                this.ribbonPageGroupSaoLuu.Visible = false;
+            }
 
+            barButtonItemDangXuat.Links[0].Visible = true;
             barButtonItemDangNhap.Links[0].Visible = false; // Tắt button Đăng nhập trên form chính
-            //this.ribbonPageDanhMuc.Visible = true;
+            this.ribbonPageDanhMuc.Visible = true;
             for (int i = 0; i < Program.xtratabcontrol.TabPages.Count; i++)
             {
                 if (Program.xtratabcontrol.TabPages[i].Text == "Đăng Nhập")
@@ -108,6 +116,79 @@ namespace ChuyenDeVersion1_6_6
         {
             FormLogin fm = new FormLogin();
             TabCreating(Program.xtratabcontrol, "Đăng Nhập", fm);
+        }
+
+        private void barButtonItemDocGia_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Program.DocGiaPM = 0;
+            Form_DocGia_For_NhanVien fm = new Form_DocGia_For_NhanVien();
+           
+            TabCreating(Program.xtratabcontrol, "Độc Giả", fm);
+        }
+
+        private void barButtonItemSach_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FormSach fm = new FormSach();
+            TabCreating(Program.xtratabcontrol, "Sách", fm);
+        }
+
+        private void barButtonItemTacGia_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FormTacGia fm = new FormTacGia();
+            TabCreating(Program.xtratabcontrol, "Tác Giả", fm);
+        }
+
+        private void barButtonItemSaoLuu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FormBackUpRestore fm = new FormBackUpRestore();
+            for (int i = 0; i < Program.xtratabcontrol.TabPages.Count; i++)
+            {
+                Program.xtratabcontrol.TabPages.RemoveAt(i);
+
+            }
+            TabCreating(Program.xtratabcontrol, "Phục Hồi", fm);
+
+        }
+
+        private void barButtonItemISBN_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FormISBN fm = new FormISBN();
+            TabCreating(Program.xtratabcontrol, "ISBN", fm);
+        }
+
+        private void barButtonItemNhanVien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FormNhanVien fm = new FormNhanVien();
+            TabCreating(Program.xtratabcontrol, "ISBN", fm);
+        }
+
+        private void barButtonItemPhieuMuonTra_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Program.DocGiaPM = 1;
+            Form_DocGia_For_NhanVien fm = new Form_DocGia_For_NhanVien();
+            
+            TabCreating(Program.xtratabcontrol, "Phiếu Mượn Trả", fm);
+        }
+
+        private void barButtonItemDangXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            toolStripStatusLabelMaNV.Text = "MANV";
+            toolStripStatusLabelTen.Text = "HOTEN";
+            toolStripStatusLabelNhom.Text = "NHOM";
+            barButtonItemDangNhap.Links[0].Visible = true;
+
+           
+            xtraTabControl.TabPages.Clear();
+            this.ribbonPageDanhMuc.Visible = false;
+            this.ribbonPageGroupSaoLuu.Visible = false;
+            this.ribbonPageGroupTaoTaiKhoan.Visible = false;
+            barButtonItemDangNhap.Links[0].Visible = true;
+            barButtonItemDangXuat.Links[0].Visible = false;
+        }
+
+        private void barButtonItemTaoTaiKhoan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
         }
     }
 }

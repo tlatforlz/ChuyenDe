@@ -33,5 +33,16 @@ namespace ChuyenDeVersion1_6_6.Properties {
                 return ((string)(this["QL_THUVIENConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-Q8TO312\\TLATFORLZ;Initial Catalog=master;Persist Security Inf" +
+            "o=True;User ID=sa;Password=root")]
+        public string masterConnectionString {
+            get {
+                return ((string)(this["masterConnectionString"]));
+            }
+        }
     }
 }
