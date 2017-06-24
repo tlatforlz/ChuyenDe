@@ -27,7 +27,7 @@ namespace ChuyenDeVersion1_6_6
             fillToolStrip.Visible = false;
             fillToolStrip1.Visible = false;
             panel1.Enabled = false;
-           // sP_DocGia_PhieuMuonBindingNavigator.Visible = false; ////// ??????????????????
+            // sP_DocGia_PhieuMuonBindingNavigator.Visible = false; ////// ??????????????????
             Program.KetNoi();
             if (Program.mGroup == "DOCGIA")
             {
@@ -188,7 +188,7 @@ namespace ChuyenDeVersion1_6_6
             this.pHIEUMUONBindingSource.AddNew();
             this.tableAdapterManager.UpdateAll(this.qL_THUVIENDataSet);
             mADGSpinEdit.Value = Int32.Parse(Program.maDG);
-            mANVSpinEdit.Value = 2;
+            mANVSpinEdit.Value = Int32.Parse(Program.username);
             // mANVSpinEdit.Value = Int32.Parse(Program.mlogin);
             DateTime now = DateTime.Now;
             nGAYMUONDateEdit.DateTime = now;
@@ -210,13 +210,7 @@ namespace ChuyenDeVersion1_6_6
                 maphieuToolStripTextBox.Text = row.Cells[0].Value.ToString();
                 Program.maPhieu= row.Cells[0].Value.ToString();
                 this.fillToolStripButton1.PerformClick();
-                //foreach (DataTable table in qL_THUVIENDataSet.Tables)
-                //    if (table.Rows.Count != 0)
-                //    {
-                //        //MessageBox.Show("x= " + qL_THUVIENDataSet.Tables.Count);
-                //        //MessageBox.Show("x= " + table.TableName);
-                //        //MessageBox.Show("x= " + table.Rows.Count);
-                //    }
+                
                 if (Program.muonSach == false)
                 {
                     contextMenuStrip1.Items[0].Enabled = false;
@@ -233,19 +227,7 @@ namespace ChuyenDeVersion1_6_6
                     contextMenuStrip1.Items[1].Enabled = true;
                     contextMenuStrip1.Items[0].Enabled = true;
                 }
-               // MessageBox.Show("x= " + qL_THUVIENDataSet.Tables["NHANVIEN"].Rows.Count);
-                //MessageBox.Show("x= " + qL_THUVIENDataSet.Tables.ToString());
-                //MessageBox.Show("x= " +qL_THUVIENDataSet.Tables["CT_PHIEUMUONDataTable"].Rows.Count);
-
-                //MessageBox.Show("x= " + qL_THUVIENDataSet.Tables[1].Rows.Count);
-                //cT_PhieuMuon_PhieuMuonDataGridView.;
-                // SqlDataAdapter da2;
-                // DataTable dt2 = new DataTable();
-                //
-                //da2 = new SqlDataAdapter("SELECT * FROM SACH WHERE ISBN = '" + row.Cells[0].Value.ToString() + "'", Program.conn);
-                // da2 = new SqlDataAdapter("exec CT_PhieuMuon_PhieuMuon '" + row.Cells[0].Value.ToString() + "'", Program.conn);
-                // da2.Fill(dt2);
-                // dataGridView2.DataSource = dt2;
+              
             }
         }
 

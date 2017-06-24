@@ -45,7 +45,6 @@ namespace ChuyenDeVersion1_6_6
 
         private void Form_DocGia_For_NhanVien_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'qL_THUVIENDataSet.DOCGIA' table. You can move, or remove it, as needed.
             this.dOCGIATableAdapter.Fill(this.qL_THUVIENDataSet.DOCGIA);
             panel1.Enabled = false;
             tRANGTHAISpinEdit.Visible = false;
@@ -72,7 +71,6 @@ namespace ChuyenDeVersion1_6_6
         private void thêmToolStripMenuItem_Click(object sender, EventArgs e)
         {
             themDocGia = true;
-            //mADGSpinEdit.Enabled = true;
             dataGridView1.Enabled = false;
             panel1.Enabled = true;
             hODGTextEdit.Text = tENDGTextEdit.Text = eMAILDGTextEdit.Text = sOCMNDTextEdit.Text = dIACHITextEdit.Text = dIENTHOAITextEdit.Text = "";
@@ -82,8 +80,6 @@ namespace ChuyenDeVersion1_6_6
             DateTime now = DateTime.Now;
             nGAYLAMTHEDateEdit.EditValue = now.ToString();
             nGAYHETHANDateEdit.EditValue = (now.AddYears(1)).ToString();
-            //MessageBox.Show("lam the " + nGAYLAMTHEDateEdit.Text);
-            //this.tableAdapterManager.UpdateAll(this.qL_THUVIENDataSet);
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
@@ -113,10 +109,6 @@ namespace ChuyenDeVersion1_6_6
                 return;
             }
             
-            //if (mADGSpinEdit.Value <= 0)
-            //{
-            //    MessageBox.Show("Vui Lòng Nhập Mã Phiếu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
             else
             {
                 try
@@ -141,8 +133,6 @@ namespace ChuyenDeVersion1_6_6
                     }
                         tRANGTHAISpinEdit.Text = "1";
                     this.Validate();
-                   // String a = ((DataRowView)dOCGIABindingSource.Current).Row.ItemArray[0].ToString();
-                    //MessageBox.Show("a = " + a);
                     maDG = mADGSpinEdit.Text;
                     panel1.Enabled = false;
                     dataGridView1.Enabled = true;
@@ -151,20 +141,25 @@ namespace ChuyenDeVersion1_6_6
                         themDocGia = false;
                         Program.KetNoi();
                         string strLenh = "exec TAO_LOGIN '" + ("DG" + maDG) + "','" + "123" + "','" + sOCMNDTextEdit.Text.Trim() + "','" + "DOCGIA" + "'";
-                        int kq = Program.ExecSqlNonQuery(strLenh);
+                        int kq = 0;
+                        try
+                        {
+                             kq = Program.ExecSqlNonQuery(strLenh);
+                        }catch(Exception err)
+                        {
+                            MessageBox.Show(err.ToString());
+                        }
                         if (kq == 0)
                         {
                             MessageBox.Show("Tạo tài khoản thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            
                             panel1.Visible = false;
                             panel1.Visible = false;
-                            //btnThemTaiKhoan.Enabled = false;
                         }
                         else if (kq == 1)
                         {
                             tRANGTHAISpinEdit.Text = "0";
                             MessageBox.Show("Tên tài khoản đã tồn tại, vui lòng chọn tên khác", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                            
+      
                         }
                         else
                         {
@@ -204,10 +199,8 @@ namespace ChuyenDeVersion1_6_6
 
         private void sửaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           // mADGSpinEdit.Enabled = false;
             panel1.Enabled = true;
             hODGTextEdit.Focus();
-
         }
 
         private void xóaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -225,7 +218,6 @@ namespace ChuyenDeVersion1_6_6
                     
                  strLenh = "Update  DOCGIA set TRANGTHAI = 0 where MADG = " + maDG;
                  kq = Program.ExecSqlNonQuery(strLenh);
-                //this.nHANVIENBindingSource.RemoveCurrent();
                 this.dOCGIATableAdapter.Fill(this.qL_THUVIENDataSet.DOCGIA);
             }
         }
@@ -233,19 +225,15 @@ namespace ChuyenDeVersion1_6_6
         private void mượnTrảToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Program.maDG = maDG;
-            
             FormDocGia_PhieuMuon fm = new FormDocGia_PhieuMuon();
             fm.ShowDialog();
-            //this.Hide();
         }
         String cmnd;
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
-                
-
-                    DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[e.RowIndex];
+                DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[e.RowIndex];
                 if (row.Cells[12].Value.ToString() == "0")
                 {
                     contextMenuStrip1.Items[4].Enabled = false;
@@ -258,13 +246,10 @@ namespace ChuyenDeVersion1_6_6
                 }
                 maDG = row.Cells[0].Value.ToString();
                 cmnd= row.Cells[4].Value.ToString();
-                //DateTime ngayHetHan = DateTime.ParseExact(row.Cells[10].Value.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 DateTime ngayHetHan = Convert.ToDateTime(row.Cells[10].Value.ToString());
-                //row.Cells[11].Value.ToString();
                 DateTime now = DateTime.Now;
                 if (ngayHetHan < now)
                 {
-                    // contextMenuStrip1.Items[0].Enabled = false;
                     Program.muonSach = false;
                 }
                 else
@@ -272,25 +257,16 @@ namespace ChuyenDeVersion1_6_6
                     Program.muonSach = true;
                 }
                 Program.maDG = maDG;
-                //panel2.Visible = true;
-               // manv = row.Cells[0].Value.ToString();
                 SqlDataReader myReader;
                 Program.KetNoi();
                 string strLenh = "exec sp_User_Login '" + cmnd + "'";
                 myReader = Program.ExecSqlDataReader(strLenh);
                 
-               // myReader.Read();
                 if (myReader.Read())
                 {
-                    //myReader.Read();
                     string tenTaiKhoan = myReader["name"].ToString();
                     txtTaiKhoan.Text = tenTaiKhoan;
                 }
-                    
-                
-                
-                //btnDoiMatKhau.Enabled = true;
-                //btnThemTaiKhoan.Enabled = false;
             }
         }
         public bool IsNumber(string pValue)
@@ -341,12 +317,8 @@ namespace ChuyenDeVersion1_6_6
                 string strLenh = "exec sp_password NULL, '" + mk + "', '" + txtTaiKhoan.Text + "'";
                 int kq = Program.ExecSqlNonQuery(strLenh);
                 MessageBox.Show("Đổi mật khẩu thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //panel1.Visible = false;
                 panel2.Enabled = false;
-                //btnDoiMatKhau.Enabled = true;
                 txtMatKhau.Text = "";
-                
-
             }
         }
 

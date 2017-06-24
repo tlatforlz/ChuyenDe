@@ -99,17 +99,17 @@ namespace ChuyenDeVersion1_6_6
 
             this.tACGIABindingSource.AddNew();
 
-            if (Program.conn.State == ConnectionState.Closed)
-                Program.conn.Open();
-            String strLenh = "dbo.SP_MaTacGia";
-            Program.sqlcmd = Program.conn.CreateCommand();
-            Program.sqlcmd.CommandType = CommandType.StoredProcedure;
-            Program.sqlcmd.CommandText = strLenh;
-            Program.sqlcmd.Parameters.Add("@Ret", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
-            Program.sqlcmd.ExecuteNonQuery();
-            Program.conn.Close();
-            String Ret = Program.sqlcmd.Parameters["@Ret"].Value.ToString();
-            this.mATACGIASpinEdit.Text = Ret;
+            //if (Program.conn.State == ConnectionState.Closed)
+            //    Program.conn.Open();
+            //String strLenh = "dbo.SP_MaTacGia";
+            //Program.sqlcmd = Program.conn.CreateCommand();
+            //Program.sqlcmd.CommandType = CommandType.StoredProcedure;
+            //Program.sqlcmd.CommandText = strLenh;
+            //Program.sqlcmd.Parameters.Add("@Ret", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+            //Program.sqlcmd.ExecuteNonQuery();
+            //Program.conn.Close();
+            //String Ret = Program.sqlcmd.Parameters["@Ret"].Value.ToString();
+            //this.mATACGIASpinEdit.Text = Ret;
         }
 
 
@@ -250,9 +250,13 @@ namespace ChuyenDeVersion1_6_6
                     return;
                 }
 
-                String exec = "Exec SP_ThemTacGia '" + hoTenTacGia + "','" + diaChiTacGia + "','" + soDienThoai + "'";
-                Program.ExecSqlDataReader(exec);
-               
+                    
+                this.Validate();
+                this.tACGIABindingSource.EndEdit(); // kết thúc quá trình hiệu chỉnh dữ liệu trên 1 dòng trong Dataset
+                this.tACGIATableAdapter.Update(this.qL_THUVIENDataSet);
+                //String exec = "Exec SP_ThemTacGia '" + hoTenTacGia + "','" + diaChiTacGia + "','" + soDienThoai + "'";
+                //Program.ExecSqlDataReader(exec);
+
                 MessageBox.Show("Thêm Tác giả Thành Công ! ", "THÔNG BÁO", MessageBoxButtons.OK);
              
                 int type = 1; // XOA
