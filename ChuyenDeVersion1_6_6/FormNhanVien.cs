@@ -60,6 +60,8 @@ namespace ChuyenDeVersion1_6_6
         Boolean themNhanVien = false;
         private void btnThemNhanVien_Click(object sender, EventArgs e)
         {
+            radioNHANVIEN.Checked = true;
+            txtTimKiem.Enabled = false;
             themNhanVien = true;
             xuLyButton(true);
             //txtMaNhanVien.Enabled = true;
@@ -71,6 +73,7 @@ namespace ChuyenDeVersion1_6_6
 
         private void btnHuy2_Click(object sender, EventArgs e)
         {
+            txtTimKiem.Enabled = true;
             this.nHANVIENBindingSource.CancelEdit();
             xuLyButton(false);
 
@@ -80,7 +83,7 @@ namespace ChuyenDeVersion1_6_6
             if (DialogResult.Yes == MessageBox.Show("Bạn có chắc muốn xóa hay không?", "Thông báo", MessageBoxButtons.YesNo))
             {
                 Program.KetNoi();
-                string strLenh = "sp_droplogin '" + txtTaiKhoan.Text +"'";
+                string strLenh = "exec Xoa_Login '" + txtTaiKhoan.Text +"','"+manv+"'";
                 int kq = Program.ExecSqlNonQuery(strLenh);
                 if (kq != 0)
                 {
@@ -124,7 +127,7 @@ namespace ChuyenDeVersion1_6_6
             }
             
         }
-
+        String quyen1, quyen2;  
         private void btnLuu2_Click(object sender, EventArgs e)
         {
 
@@ -173,12 +176,21 @@ namespace ChuyenDeVersion1_6_6
                    // this.tableAdapterManager.UpdateAll(this.qL_THUVIENDataSet);
                    // this.nHANVIENTableAdapter.Fill(this.qL_THUVIENDataSet.NHANVIEN);
                     xuLyButton(false);
-                   // return;
+                    // return;
+                    String quyen = "";
                     if (themNhanVien == true)
                     {
                         themNhanVien = false;
+                        if (radioADMIN.Checked == true)
+                        {
+                            quyen = "ADMIN";
+                        }
+                        else
+                        {
+                            quyen = "NHANVIEN";
+                        }
                         Program.KetNoi();
-                        string strLenh = "exec TAO_LOGIN '" + ("NV" + manv) + "','" + "123" + "','" + manv + "','" + "NHANVIEN" + "'";
+                        string strLenh = "exec TAO_LOGIN '" + ("NV" + manv) + "','" + "123" + "','" + manv + "','" + quyen + "'";
                         int kq = Program.ExecSqlNonQuery(strLenh);
                         if (kq == 0)
                         {
@@ -201,11 +213,24 @@ namespace ChuyenDeVersion1_6_6
                         }
                        
                     }
+                    if (radioADMIN.Checked == true)
+                    {
+                        quyen1 = "NHANVIEN";
+                        quyen2 = "ADMIN";
+                    }
+                    if (radioNHANVIEN.Checked == true)
+                    {
+                        quyen1 = "ADMIN";
+                        quyen2 = "NHANVIEN";
+                    }
+                    String strLenh1 = "exec SP_ChuyenQuyen '" + quyen1 + "','" + quyen2 + "','" + manv + "'";
+                    int kq1 = Program.ExecSqlNonQuery(strLenh1);
                     this.nHANVIENBindingSource.EndEdit();
                     this.tableAdapterManager.UpdateAll(this.qL_THUVIENDataSet);
                     this.nHANVIENTableAdapter.Fill(this.qL_THUVIENDataSet.NHANVIEN);
                     contextMenuStrip1.Items[0].Enabled = true;
                     contextMenuStrip1.Items[1].Enabled = true;
+                    txtTimKiem.Enabled = true;
                 }
                 catch(Exception ex)
                 {
@@ -351,7 +376,7 @@ namespace ChuyenDeVersion1_6_6
 
                 }
             }
-            
+            txtTimKiem.Enabled = true;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -365,6 +390,7 @@ namespace ChuyenDeVersion1_6_6
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
+
             if (txtTaiKhoan.Enabled == true)
             {
                 btnThemTaiKhoan.Enabled = true;
@@ -373,12 +399,14 @@ namespace ChuyenDeVersion1_6_6
             {
                 btnDoiMatKhau.Enabled = true;
             }
+            txtTimKiem.Enabled = true;
             panel1.Visible = false;
             panel1.Enabled = false;
         }
 
         private void btnDoiMatKhau_Click(object sender, EventArgs e)
         {
+            txtTimKiem.Enabled = false;
             txtMatKhau.Text = "";
             panel1.Visible = true;
             panel1.Enabled = true;

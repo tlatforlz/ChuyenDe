@@ -70,6 +70,7 @@ namespace ChuyenDeVersion1_6_6
         Boolean themDocGia = false;
         private void thêmToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            txtTimKiem.Enabled = false;
             themDocGia = true;
             dataGridView1.Enabled = false;
             panel1.Enabled = true;
@@ -138,9 +139,27 @@ namespace ChuyenDeVersion1_6_6
                     dataGridView1.Enabled = true;
                     if (themDocGia == true)
                     {
+                        SqlDataReader myReader;
+                        Program.KetNoi();
+                        String strLenh = "SELECT count(MADG) as dem FROM DOCGIA WHERE SOCMND= '" + sOCMNDTextEdit.Text.ToString()+"'";
+                        myReader = Program.ExecSqlDataReader(strLenh);
+                        if (myReader != null)
+                        {
+                            myReader.Read();
+
+                            //Program.username = myReader.GetString(0).ToString();     // Lay username
+                            String dem  = myReader["dem"].ToString();
+                            if (dem == "1")
+                            {
+                                MessageBox.Show("Số CMND đã tồn tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                sOCMNDTextEdit.Focus();
+                                this.dOCGIABindingSource.RemoveCurrent();
+                                return;
+                            }
+                        }
                         themDocGia = false;
                         Program.KetNoi();
-                        string strLenh = "exec TAO_LOGIN '" + ("DG" + maDG) + "','" + "123" + "','" + sOCMNDTextEdit.Text.Trim() + "','" + "DOCGIA" + "'";
+                         strLenh = "exec TAO_LOGIN '" + ("DG" + maDG) + "','" + "123" + "','" + sOCMNDTextEdit.Text.Trim() + "','" + "DOCGIA" + "'";
                         int kq = 0;
                         try
                         {
@@ -152,13 +171,13 @@ namespace ChuyenDeVersion1_6_6
                         if (kq == 0)
                         {
                             MessageBox.Show("Tạo tài khoản thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            panel1.Visible = false;
-                            panel1.Visible = false;
+                            //panel1.Visible = false;
+                            //panel1.Visible = false;
                         }
                         else if (kq == 1)
                         {
                             tRANGTHAISpinEdit.Text = "0";
-                            MessageBox.Show("Tên tài khoản đã tồn tại, vui lòng chọn tên khác", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                            MessageBox.Show("Tạo tài khoản không thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
       
                         }
                         else
@@ -187,18 +206,21 @@ namespace ChuyenDeVersion1_6_6
                 }
                 
             }
-
+            txtTimKiem.Enabled = true;
         }
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
+            txtTimKiem.Enabled = true;
             this.dOCGIABindingSource.CancelEdit();
             panel1.Enabled = false;
             dataGridView1.Enabled = true;
+            themDocGia = false;
         }
 
         private void sửaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            txtTimKiem.Enabled = false;
             panel1.Enabled = true;
             hODGTextEdit.Focus();
         }
@@ -208,9 +230,8 @@ namespace ChuyenDeVersion1_6_6
             if (DialogResult.Yes == MessageBox.Show("Bạn có chắc muốn xóa hay không?", "Thông báo", MessageBoxButtons.YesNo))
             {
                 Program.KetNoi();
-                
-                    string strLenh = "sp_droplogin '" + txtTaiKhoan.Text + "'";
-                    int kq = Program.ExecSqlNonQuery(strLenh);
+                string strLenh = "exec Xoa_Login '" + txtTaiKhoan.Text + "','" + cmnd + "'";
+                int kq = Program.ExecSqlNonQuery(strLenh);
                     if (kq != 0)
                     {
                         return;
@@ -238,11 +259,12 @@ namespace ChuyenDeVersion1_6_6
                 {
                     contextMenuStrip1.Items[4].Enabled = false;
                     contextMenuStrip1.Items[3].Enabled = false;
+                    Program.muonSach = false;
                 }
                 else
                 {
                     contextMenuStrip1.Items[4].Enabled = true;
-                    contextMenuStrip1.Items[3].Enabled = false;
+                    contextMenuStrip1.Items[3].Enabled = true;
                 }
                 maDG = row.Cells[0].Value.ToString();
                 cmnd= row.Cells[4].Value.ToString();
@@ -252,7 +274,7 @@ namespace ChuyenDeVersion1_6_6
                 {
                     Program.muonSach = false;
                 }
-                else
+                if (ngayHetHan > now && row.Cells[12].Value.ToString() != "0")
                 {
                     Program.muonSach = true;
                 }
@@ -301,6 +323,7 @@ namespace ChuyenDeVersion1_6_6
 
         private void thêmTàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            txtTimKiem.Enabled = false;
             panel2.Enabled = true;
         }
 
@@ -320,6 +343,7 @@ namespace ChuyenDeVersion1_6_6
                 panel2.Enabled = false;
                 txtMatKhau.Text = "";
             }
+            txtTimKiem.Enabled = true;
         }
 
         private void mADGSpinEdit_EditValueChanged(object sender, EventArgs e)
@@ -344,6 +368,7 @@ namespace ChuyenDeVersion1_6_6
 
         private void btnHuyTaiKhoan_Click(object sender, EventArgs e)
         {
+            txtTimKiem.Enabled = true;
             panel2.Enabled = false;
             txtMatKhau.Text = "";
         }
@@ -364,6 +389,11 @@ namespace ChuyenDeVersion1_6_6
                 MessageBox.Show("Mã Lỗi : " + ex.ToString());
             }
            
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }

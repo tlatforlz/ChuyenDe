@@ -62,18 +62,10 @@
             this.nGAYMUONDateEdit = new DevExpress.XtraEditors.DateEdit();
             this.mANVSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.cT_PhieuMuon_PhieuMuonBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cT_PhieuMuon_PhieuMuonTableAdapter = new ChuyenDeVersion1_6_6.QL_THUVIENDataSetTableAdapters.CT_PhieuMuon_PhieuMuonTableAdapter();
             this.fillToolStrip1 = new System.Windows.Forms.ToolStrip();
             this.maphieuToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.maphieuToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.fillToolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.cT_PhieuMuon_PhieuMuonDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.trảSáchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnThem = new System.Windows.Forms.Button();
@@ -82,6 +74,15 @@
             this.button1 = new System.Windows.Forms.Button();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.cT_PhieuMuon_PhieuMuonTableAdapter = new ChuyenDeVersion1_6_6.QL_THUVIENDataSetTableAdapters.CT_PhieuMuon_PhieuMuonTableAdapter();
+            this.cT_PhieuMuon_PhieuMuonDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.hủyTrảSáchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             mAPHIEULabel = new System.Windows.Forms.Label();
             mADGLabel = new System.Windows.Forms.Label();
             hINHTHUCLabel = new System.Windows.Forms.Label();
@@ -102,8 +103,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.mANVSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cT_PhieuMuon_PhieuMuonBindingSource)).BeginInit();
             this.fillToolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cT_PhieuMuon_PhieuMuonDataGridView)).BeginInit();
             this.contextMenuStrip2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cT_PhieuMuon_PhieuMuonDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // mAPHIEULabel
@@ -237,6 +238,7 @@
             this.sP_DocGia_PhieuMuonDataGridView.Size = new System.Drawing.Size(563, 220);
             this.sP_DocGia_PhieuMuonDataGridView.TabIndex = 2;
             this.sP_DocGia_PhieuMuonDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.sP_DocGia_PhieuMuonDataGridView_CellClick);
+            this.sP_DocGia_PhieuMuonDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.sP_DocGia_PhieuMuonDataGridView_CellContentClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -313,6 +315,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(305, 157);
             this.panel1.TabIndex = 3;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btnHuy
             // 
@@ -374,7 +377,7 @@
             this.hINHTHUCCheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.pHIEUMUONBindingSource, "HINHTHUC", true));
             this.hINHTHUCCheckEdit.Location = new System.Drawing.Point(91, 65);
             this.hINHTHUCCheckEdit.Name = "hINHTHUCCheckEdit";
-            this.hINHTHUCCheckEdit.Properties.Caption = "checkEdit1";
+            this.hINHTHUCCheckEdit.Properties.Caption = "Mang Về";
             this.hINHTHUCCheckEdit.Size = new System.Drawing.Size(100, 19);
             this.hINHTHUCCheckEdit.TabIndex = 5;
             // 
@@ -411,10 +414,6 @@
             this.cT_PhieuMuon_PhieuMuonBindingSource.DataMember = "CT_PhieuMuon_PhieuMuon";
             this.cT_PhieuMuon_PhieuMuonBindingSource.DataSource = this.qL_THUVIENDataSet;
             // 
-            // cT_PhieuMuon_PhieuMuonTableAdapter
-            // 
-            this.cT_PhieuMuon_PhieuMuonTableAdapter.ClearBeforeFill = true;
-            // 
             // fillToolStrip1
             // 
             this.fillToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -446,77 +445,13 @@
             this.fillToolStripButton1.Text = "Fill";
             this.fillToolStripButton1.Click += new System.EventHandler(this.fillToolStripButton1_Click_1);
             // 
-            // cT_PhieuMuon_PhieuMuonDataGridView
-            // 
-            this.cT_PhieuMuon_PhieuMuonDataGridView.AllowUserToAddRows = false;
-            this.cT_PhieuMuon_PhieuMuonDataGridView.AllowUserToDeleteRows = false;
-            this.cT_PhieuMuon_PhieuMuonDataGridView.AutoGenerateColumns = false;
-            this.cT_PhieuMuon_PhieuMuonDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.cT_PhieuMuon_PhieuMuonDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewCheckBoxColumn2,
-            this.dataGridViewCheckBoxColumn3});
-            this.cT_PhieuMuon_PhieuMuonDataGridView.ContextMenuStrip = this.contextMenuStrip2;
-            this.cT_PhieuMuon_PhieuMuonDataGridView.DataSource = this.cT_PhieuMuon_PhieuMuonBindingSource;
-            this.cT_PhieuMuon_PhieuMuonDataGridView.Location = new System.Drawing.Point(12, 331);
-            this.cT_PhieuMuon_PhieuMuonDataGridView.Name = "cT_PhieuMuon_PhieuMuonDataGridView";
-            this.cT_PhieuMuon_PhieuMuonDataGridView.ReadOnly = true;
-            this.cT_PhieuMuon_PhieuMuonDataGridView.Size = new System.Drawing.Size(646, 220);
-            this.cT_PhieuMuon_PhieuMuonDataGridView.TabIndex = 5;
-            this.cT_PhieuMuon_PhieuMuonDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cT_PhieuMuon_PhieuMuonDataGridView_CellClick);
-            this.cT_PhieuMuon_PhieuMuonDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cT_PhieuMuon_PhieuMuonDataGridView_CellContentClick);
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "MAPHIEU";
-            this.dataGridViewTextBoxColumn5.HeaderText = "MAPHIEU";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "MASACH";
-            this.dataGridViewTextBoxColumn6.HeaderText = "MASACH";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "TENSACH";
-            this.dataGridViewTextBoxColumn7.HeaderText = "TENSACH";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "NGAYTRA";
-            this.dataGridViewTextBoxColumn8.HeaderText = "NGAYTRA";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            // 
-            // dataGridViewCheckBoxColumn2
-            // 
-            this.dataGridViewCheckBoxColumn2.DataPropertyName = "TINHTRANGMUON";
-            this.dataGridViewCheckBoxColumn2.HeaderText = "TINHTRANGMUON";
-            this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
-            this.dataGridViewCheckBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewCheckBoxColumn3
-            // 
-            this.dataGridViewCheckBoxColumn3.DataPropertyName = "TRA";
-            this.dataGridViewCheckBoxColumn3.HeaderText = "TRA";
-            this.dataGridViewCheckBoxColumn3.Name = "dataGridViewCheckBoxColumn3";
-            this.dataGridViewCheckBoxColumn3.ReadOnly = true;
-            // 
             // contextMenuStrip2
             // 
             this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.trảSáchToolStripMenuItem});
+            this.trảSáchToolStripMenuItem,
+            this.hủyTrảSáchToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(119, 26);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(153, 70);
             // 
             // trảSáchToolStripMenuItem
             // 
@@ -581,18 +516,93 @@
             this.label3.TabIndex = 11;
             this.label3.Text = "Tìm Kiếm";
             // 
+            // cT_PhieuMuon_PhieuMuonTableAdapter
+            // 
+            this.cT_PhieuMuon_PhieuMuonTableAdapter.ClearBeforeFill = true;
+            // 
+            // cT_PhieuMuon_PhieuMuonDataGridView
+            // 
+            this.cT_PhieuMuon_PhieuMuonDataGridView.AllowUserToAddRows = false;
+            this.cT_PhieuMuon_PhieuMuonDataGridView.AllowUserToDeleteRows = false;
+            this.cT_PhieuMuon_PhieuMuonDataGridView.AutoGenerateColumns = false;
+            this.cT_PhieuMuon_PhieuMuonDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.cT_PhieuMuon_PhieuMuonDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewCheckBoxColumn2,
+            this.dataGridViewCheckBoxColumn3});
+            this.cT_PhieuMuon_PhieuMuonDataGridView.ContextMenuStrip = this.contextMenuStrip2;
+            this.cT_PhieuMuon_PhieuMuonDataGridView.DataSource = this.cT_PhieuMuon_PhieuMuonBindingSource;
+            this.cT_PhieuMuon_PhieuMuonDataGridView.Location = new System.Drawing.Point(12, 330);
+            this.cT_PhieuMuon_PhieuMuonDataGridView.Name = "cT_PhieuMuon_PhieuMuonDataGridView";
+            this.cT_PhieuMuon_PhieuMuonDataGridView.ReadOnly = true;
+            this.cT_PhieuMuon_PhieuMuonDataGridView.Size = new System.Drawing.Size(645, 220);
+            this.cT_PhieuMuon_PhieuMuonDataGridView.TabIndex = 12;
+            this.cT_PhieuMuon_PhieuMuonDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cT_PhieuMuon_PhieuMuonDataGridView_CellClick_1);
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "MAPHIEU";
+            this.dataGridViewTextBoxColumn5.HeaderText = "MAPHIEU";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "MASACH";
+            this.dataGridViewTextBoxColumn6.HeaderText = "MASACH";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "TENSACH";
+            this.dataGridViewTextBoxColumn7.HeaderText = "TENSACH";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "NGAYTRA";
+            this.dataGridViewTextBoxColumn8.HeaderText = "NGAYTRA";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            // 
+            // dataGridViewCheckBoxColumn2
+            // 
+            this.dataGridViewCheckBoxColumn2.DataPropertyName = "TINHTRANGMUON";
+            this.dataGridViewCheckBoxColumn2.HeaderText = "TINHTRANGMUON";
+            this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
+            this.dataGridViewCheckBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewCheckBoxColumn3
+            // 
+            this.dataGridViewCheckBoxColumn3.DataPropertyName = "TRA";
+            this.dataGridViewCheckBoxColumn3.HeaderText = "TRA";
+            this.dataGridViewCheckBoxColumn3.Name = "dataGridViewCheckBoxColumn3";
+            this.dataGridViewCheckBoxColumn3.ReadOnly = true;
+            // 
+            // hủyTrảSáchToolStripMenuItem
+            // 
+            this.hủyTrảSáchToolStripMenuItem.Name = "hủyTrảSáchToolStripMenuItem";
+            this.hủyTrảSáchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hủyTrảSáchToolStripMenuItem.Text = "Hủy Trả Sách";
+            this.hủyTrảSáchToolStripMenuItem.Click += new System.EventHandler(this.hủyTrảSáchToolStripMenuItem_Click);
+            // 
             // FormDocGia_PhieuMuon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(919, 573);
+            this.Controls.Add(this.cT_PhieuMuon_PhieuMuonDataGridView);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtTimKiem);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnThem);
-            this.Controls.Add(this.cT_PhieuMuon_PhieuMuonDataGridView);
             this.Controls.Add(this.fillToolStrip1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.sP_DocGia_PhieuMuonDataGridView);
@@ -618,8 +628,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.cT_PhieuMuon_PhieuMuonBindingSource)).EndInit();
             this.fillToolStrip1.ResumeLayout(false);
             this.fillToolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cT_PhieuMuon_PhieuMuonDataGridView)).EndInit();
             this.contextMenuStrip2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cT_PhieuMuon_PhieuMuonDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -650,20 +660,12 @@
         private DevExpress.XtraEditors.DateEdit nGAYMUONDateEdit;
         private DevExpress.XtraEditors.SpinEdit mANVSpinEdit;
         private System.Windows.Forms.BindingSource cT_PhieuMuon_PhieuMuonBindingSource;
-        private QL_THUVIENDataSetTableAdapters.CT_PhieuMuon_PhieuMuonTableAdapter cT_PhieuMuon_PhieuMuonTableAdapter;
         private System.Windows.Forms.ToolStrip fillToolStrip1;
         private System.Windows.Forms.ToolStripLabel maphieuToolStripLabel;
         private System.Windows.Forms.ToolStripTextBox maphieuToolStripTextBox;
         private System.Windows.Forms.ToolStripButton fillToolStripButton1;
         private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.Button btnLuu;
-        private System.Windows.Forms.DataGridView cT_PhieuMuon_PhieuMuonDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn3;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem thêmSáchToolStripMenuItem;
@@ -675,5 +677,14 @@
         private System.Windows.Forms.ToolStripMenuItem trảSáchToolStripMenuItem;
         private System.Windows.Forms.TextBox txtTimKiem;
         private System.Windows.Forms.Label label3;
+        private QL_THUVIENDataSetTableAdapters.CT_PhieuMuon_PhieuMuonTableAdapter cT_PhieuMuon_PhieuMuonTableAdapter;
+        private System.Windows.Forms.DataGridView cT_PhieuMuon_PhieuMuonDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn3;
+        private System.Windows.Forms.ToolStripMenuItem hủyTrảSáchToolStripMenuItem;
     }
 }

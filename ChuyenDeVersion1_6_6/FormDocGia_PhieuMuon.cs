@@ -39,14 +39,18 @@ namespace ChuyenDeVersion1_6_6
             if (Program.muonSach == false)
             {
                 btnThem.Enabled = false;
-
-
             }
-            //string strLenh = "exec SP_DocGia_PhieuMuon '" + Program.ml + "'";
-            //da1 = new SqlDataAdapter("exec SP_DocGia_PhieuMuon '" + Program.maDG + "'", Program.conn);
-            //da1.Fill(dt1);
-            //dataGridView1.DataSource = dt1;
-        }
+            if (qL_THUVIENDataSet.Tables["PHIEUMUON"].Rows.Count <= 0)
+            {
+                contextMenuStrip1.Items[0].Enabled = false;
+                contextMenuStrip1.Items[1].Enabled = false;
+                contextMenuStrip2.Items[0].Enabled = false;
+            }
+                //string strLenh = "exec SP_DocGia_PhieuMuon '" + Program.ml + "'";
+                //da1 = new SqlDataAdapter("exec SP_DocGia_PhieuMuon '" + Program.maDG + "'", Program.conn);
+                //da1.Fill(dt1);
+                //dataGridView1.DataSource = dt1;
+            }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -142,6 +146,8 @@ namespace ChuyenDeVersion1_6_6
                     MessageBox.Show("Mã Lỗi  : " + ex.Message + "\nThao tác không thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            txtTimKiem.Enabled = true;
+            btnThem.Enabled = true;
         }
 
         private void btnHuy_Click(object sender, EventArgs e)
@@ -177,6 +183,8 @@ namespace ChuyenDeVersion1_6_6
 
         private void btnThem_Click_1(object sender, EventArgs e)
         {
+            btnThem.Enabled = false;
+            txtTimKiem.Enabled = false;
             panel1.Enabled = true;
             sP_DocGia_PhieuMuonDataGridView.Enabled = false;
             cT_PhieuMuon_PhieuMuonDataGridView.Enabled = false;
@@ -196,6 +204,8 @@ namespace ChuyenDeVersion1_6_6
 
         private void btnHuy_Click_1(object sender, EventArgs e)
         {
+            btnThem.Enabled = true;
+            txtTimKiem.Enabled = true;
             panel1.Enabled = false;
             sP_DocGia_PhieuMuonDataGridView.Enabled = true;
             cT_PhieuMuon_PhieuMuonDataGridView.Enabled = true;
@@ -222,7 +232,7 @@ namespace ChuyenDeVersion1_6_6
                     contextMenuStrip1.Items[0].Enabled = false;
                     contextMenuStrip1.Items[1].Enabled = false;
                 }
-                else
+                if(qL_THUVIENDataSet.Tables["CT_PhieuMuon_PhieuMuon"].Rows.Count <= 0&&Program.muonSach==true)
                 {
                     contextMenuStrip1.Items[1].Enabled = true;
                     contextMenuStrip1.Items[0].Enabled = true;
@@ -329,6 +339,54 @@ namespace ChuyenDeVersion1_6_6
                                                 + " OR MADG = " + this.txtTimKiem.Text;
             }
             
+        }
+
+        private void sP_DocGia_PhieuMuonDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void cT_PhieuMuon_PhieuMuonDataGridView_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = (DataGridViewRow)cT_PhieuMuon_PhieuMuonDataGridView.Rows[e.RowIndex];
+                String Tra = row.Cells[5].Value.ToString();
+                maPhieu = row.Cells[0].Value.ToString();
+                maSach = row.Cells[1].Value.ToString();
+                if (Tra == "False")
+                {
+                    contextMenuStrip2.Items[0].Enabled = true;
+                    contextMenuStrip2.Items[1].Enabled = false;
+                }
+                else
+                {
+                    contextMenuStrip2.Items[0].Enabled = false;
+                    contextMenuStrip2.Items[1].Enabled = true;
+                }
+                //MessageBox.Show("tra = " + Tra);
+            }
+        }
+
+        private void hủyTrảSáchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                String strLenh = "Update CT_PHIEUMUON SET TRA=0  where MAPHIEU = " + maPhieu + " and MASACH = '" + maSach + "'"
+                                 + "Update SACH SET CHOMUON = 1 where MASACH = '" + maSach + "'";
+                Program.ExecSqlNonQuery(strLenh);
+                this.fillToolStripButton1.PerformClick();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Mã Lỗi  : " + ex.Message + "\nThao tác không thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

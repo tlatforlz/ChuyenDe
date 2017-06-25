@@ -116,7 +116,7 @@
             // 
             // barButtonItemTaoTaiKhoan
             // 
-            this.barButtonItemTaoTaiKhoan.Caption = "TẠO TÀI KHOẢN";
+            this.barButtonItemTaoTaiKhoan.Caption = "ĐỔI MẬT KHẨU";
             this.barButtonItemTaoTaiKhoan.Id = 5;
             this.barButtonItemTaoTaiKhoan.Name = "barButtonItemTaoTaiKhoan";
             this.barButtonItemTaoTaiKhoan.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemTaoTaiKhoan_ItemClick);

@@ -33,6 +33,7 @@ namespace ChuyenDeVersion1_6_6
         public static String maPhieu = "";
         public static String maISBN = "";
         public static int DocGiaPM = 0;
+        public static String maSach = "";
 
         public static BindingSource bds_dspm = new BindingSource();
         public static FormMain frmMain;
@@ -64,7 +65,7 @@ namespace ChuyenDeVersion1_6_6
         }
         public static SqlDataReader ExecSqlDataReader(String strLenh)
         {
-            Program.conn.Close();
+          
             SqlDataReader myreader;
             SqlCommand sqlcmd = new SqlCommand(strLenh, Program.conn);
             sqlcmd.CommandType = CommandType.Text;
@@ -76,7 +77,7 @@ namespace ChuyenDeVersion1_6_6
             catch (SqlException ex)
             {
                 Program.conn.Close();
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("FUCK " + ex.Message);
                 return null;
             }
         }

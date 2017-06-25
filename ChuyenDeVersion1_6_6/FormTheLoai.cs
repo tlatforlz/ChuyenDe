@@ -112,7 +112,7 @@ namespace ChuyenDeVersion1_6_6
                     
                 }
             }
-            
+            txtTimKiem.Enabled = true;
         }
 
         private void sửaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -126,6 +126,7 @@ namespace ChuyenDeVersion1_6_6
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            txtTimKiem.Enabled = false;
             xuLyButton(true);
             txtMaTheLoai.Text = "";
             txtTenTheLoai.Text = "";
@@ -137,6 +138,7 @@ namespace ChuyenDeVersion1_6_6
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
+            txtTimKiem.Enabled = true;
             this.tHELOAIBindingSource.CancelEdit();
             xuLyButton(false);
         }

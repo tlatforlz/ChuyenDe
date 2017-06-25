@@ -99,17 +99,7 @@ namespace ChuyenDeVersion1_6_6
 
             this.tACGIABindingSource.AddNew();
 
-            //if (Program.conn.State == ConnectionState.Closed)
-            //    Program.conn.Open();
-            //String strLenh = "dbo.SP_MaTacGia";
-            //Program.sqlcmd = Program.conn.CreateCommand();
-            //Program.sqlcmd.CommandType = CommandType.StoredProcedure;
-            //Program.sqlcmd.CommandText = strLenh;
-            //Program.sqlcmd.Parameters.Add("@Ret", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
-            //Program.sqlcmd.ExecuteNonQuery();
-            //Program.conn.Close();
-            //String Ret = Program.sqlcmd.Parameters["@Ret"].Value.ToString();
-            //this.mATACGIASpinEdit.Text = Ret;
+            
         }
 
 

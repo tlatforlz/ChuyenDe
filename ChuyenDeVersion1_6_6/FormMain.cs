@@ -188,7 +188,8 @@ namespace ChuyenDeVersion1_6_6
 
         private void barButtonItemTaoTaiKhoan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            FormDoiMatKhau fm = new FormDoiMatKhau();
+            TabCreating(Program.xtratabcontrol, "Đổi Mật Khẩu", fm);
         }
     }
 }

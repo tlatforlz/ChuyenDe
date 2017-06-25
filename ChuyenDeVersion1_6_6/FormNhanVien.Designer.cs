@@ -36,6 +36,7 @@
             System.Windows.Forms.Label tENNVLabel;
             System.Windows.Forms.Label hONVLabel;
             System.Windows.Forms.Label mANVLabel;
+            System.Windows.Forms.Label label2;
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.mANVDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hONVDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,6 +76,10 @@
             this.tRANGTHAISpinEdit = new DevExpress.XtraEditors.TextEdit();
             this.nHANVIENTableAdapter = new ChuyenDeVersion1_6_6.QL_THUVIENDataSetTableAdapters.NHANVIENTableAdapter();
             this.tableAdapterManager = new ChuyenDeVersion1_6_6.QL_THUVIENDataSetTableAdapters.TableAdapterManager();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.radioADMIN = new System.Windows.Forms.RadioButton();
+            this.radioNHANVIEN = new System.Windows.Forms.RadioButton();
             eMAILLabel = new System.Windows.Forms.Label();
             dIENTHOAILabel = new System.Windows.Forms.Label();
             dIACHILabel = new System.Windows.Forms.Label();
@@ -82,6 +87,7 @@
             tENNVLabel = new System.Windows.Forms.Label();
             hONVLabel = new System.Windows.Forms.Label();
             mANVLabel = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nHANVIENBindingSource)).BeginInit();
@@ -96,6 +102,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.hONVTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tENNVTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tRANGTHAISpinEdit.Properties)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // eMAILLabel
@@ -462,6 +469,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(label2);
+            this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.Add(mANVLabel);
             this.panel2.Controls.Add(this.txtMaNhanVien);
             this.panel2.Controls.Add(this.btnHuy2);
@@ -552,6 +561,48 @@
             this.tableAdapterManager.THELOAITableAdapter = null;
             this.tableAdapterManager.UpdateOrder = ChuyenDeVersion1_6_6.QL_THUVIENDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radioNHANVIEN);
+            this.groupBox1.Controls.Add(this.radioADMIN);
+            this.groupBox1.Location = new System.Drawing.Point(375, 89);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(179, 44);
+            this.groupBox1.TabIndex = 33;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(296, 103);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(38, 13);
+            label2.TabIndex = 34;
+            label2.Text = "Quyền";
+            // 
+            // radioADMIN
+            // 
+            this.radioADMIN.AutoSize = true;
+            this.radioADMIN.Location = new System.Drawing.Point(6, 8);
+            this.radioADMIN.Name = "radioADMIN";
+            this.radioADMIN.Size = new System.Drawing.Size(60, 17);
+            this.radioADMIN.TabIndex = 0;
+            this.radioADMIN.TabStop = true;
+            this.radioADMIN.Text = "ADMIN";
+            this.radioADMIN.UseVisualStyleBackColor = true;
+            // 
+            // radioNHANVIEN
+            // 
+            this.radioNHANVIEN.AutoSize = true;
+            this.radioNHANVIEN.Location = new System.Drawing.Point(95, 8);
+            this.radioNHANVIEN.Name = "radioNHANVIEN";
+            this.radioNHANVIEN.Size = new System.Drawing.Size(81, 17);
+            this.radioNHANVIEN.TabIndex = 1;
+            this.radioNHANVIEN.TabStop = true;
+            this.radioNHANVIEN.Text = "NHANVIEN";
+            this.radioNHANVIEN.UseVisualStyleBackColor = true;
+            // 
             // FormNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -585,6 +636,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.hONVTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tENNVTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tRANGTHAISpinEdit.Properties)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -631,5 +684,9 @@
         private DevExpress.XtraEditors.TextEdit tENNVTextEdit;
         private DevExpress.XtraEditors.TextEdit tRANGTHAISpinEdit;
         private DevExpress.XtraEditors.SpinEdit txtMaNhanVien;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radioNHANVIEN;
+        private System.Windows.Forms.RadioButton radioADMIN;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
