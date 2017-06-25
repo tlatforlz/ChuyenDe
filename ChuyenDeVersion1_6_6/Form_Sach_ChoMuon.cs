@@ -72,6 +72,26 @@ namespace ChuyenDeVersion1_6_6
 
         private void mượnSáchToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SqlDataReader myReader;
+            Program.conn.Close();
+            Program.KetNoi();
+            String strLenh = "exec SP_KiemTra_MuonSach '" + Program.maDG + "'";
+            myReader = Program.ExecSqlDataReader(strLenh);
+            if (myReader != null)
+            {
+                myReader.Read();
+
+                //Program.username = myReader.GetString(0).ToString();     // Lay username
+                
+                String dem = myReader["dem"].ToString();
+                MessageBox.Show("dem = " + dem);
+                int dem1 = Int32.Parse(dem);
+                if (dem1 >= 3)
+                {
+                    MessageBox.Show("Bạn đã mượn 3 cuốn chưa trả", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
             try
             {
                
@@ -89,8 +109,8 @@ namespace ChuyenDeVersion1_6_6
                 }
                 // Program.mlogin = "2";
                 Program.KetNoi();
-                string strLenh = "exec Sp_Them_CT_PhieuMuon '" + Program.maPhieu + "','" + Program.maISBN + "','" + Program.username + "'";
-                Program.ExecSqlNonQuery(strLenh);
+                string strLenh2 = "exec Sp_Them_CT_PhieuMuon '" + Program.maPhieu + "','" + Program.maISBN + "','" + Program.username + "'";
+                Program.ExecSqlNonQuery(strLenh2);
                 dem++;
                 //MessageBox.Show("isbn sap them " + Program.maISBN);
                 maISBN += " " + Program.maISBN+" ";

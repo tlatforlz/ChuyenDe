@@ -183,6 +183,24 @@ namespace ChuyenDeVersion1_6_6
 
         private void btnThem_Click_1(object sender, EventArgs e)
         {
+            SqlDataReader myReader;
+            Program.conn.Close();
+            Program.KetNoi();
+            String strLenh = "exec SP_KiemTra_MuonSach '" + Program.maDG + "'";
+            myReader = Program.ExecSqlDataReader(strLenh);
+            if (myReader != null)
+            {
+                myReader.Read();
+
+                //Program.username = myReader.GetString(0).ToString();     // Lay username
+                String dem = myReader["dem"].ToString();
+                int dem1 = Int32.Parse(dem);
+                if (dem1 >= 3)
+                {
+                    MessageBox.Show("Bạn đã mượn 3 cuốn chưa trả", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
             btnThem.Enabled = false;
             txtTimKiem.Enabled = false;
             panel1.Enabled = true;
@@ -200,6 +218,7 @@ namespace ChuyenDeVersion1_6_6
             // mANVSpinEdit.Value = Int32.Parse(Program.mlogin);
             DateTime now = DateTime.Now;
             nGAYMUONDateEdit.DateTime = now;
+
         }
 
         private void btnHuy_Click_1(object sender, EventArgs e)
@@ -311,9 +330,12 @@ namespace ChuyenDeVersion1_6_6
         {
             try
             {
-                
-                    String strLenh = "Update CT_PHIEUMUON SET TRA=1  where MAPHIEU = " + maPhieu +" and MASACH = '" + maSach+"'"
-                                     +"Update SACH SET CHOMUON = 0 where MASACH = '"+maSach+"'";
+                DateTime localDate = DateTime.Now;
+                MessageBox.Show("ngay " + localDate);
+                String strLenh = "Update CT_PHIEUMUON SET TRA=1 , NGAYTRA= '" + localDate  + "'  where MAPHIEU = " + maPhieu + " and MASACH = '" + maSach+"'"
+                                     +" Update SACH SET CHOMUON = 0 where MASACH = '"+maSach+"'";
+                Program.conn.Close();
+                Program.KetNoi();
                     Program.ExecSqlNonQuery(strLenh);
                     this.fillToolStripButton1.PerformClick();
             }
@@ -375,11 +397,33 @@ namespace ChuyenDeVersion1_6_6
 
         private void hủyTrảSáchToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SqlDataReader myReader;
+            Program.conn.Close();
+            Program.KetNoi();
+            String strLenh2 = "exec SP_KiemTra_MuonSach '" + Program.maDG + "'";
+            myReader = Program.ExecSqlDataReader(strLenh2);
+            if (myReader != null)
+            {
+                myReader.Read();
+
+                //Program.username = myReader.GetString(0).ToString();     // Lay username
+
+                String dem = myReader["dem"].ToString();
+                //MessageBox.Show("dem = " + dem);
+                int dem1 = Int32.Parse(dem);
+                if (dem1 >= 3)
+                {
+                    MessageBox.Show("Bạn đã mượn 3 cuốn chưa trả", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
             try
             {
 
-                String strLenh = "Update CT_PHIEUMUON SET TRA=0  where MAPHIEU = " + maPhieu + " and MASACH = '" + maSach + "'"
+                String strLenh = "Update CT_PHIEUMUON SET TRA=0,NGAYTRA=null  where MAPHIEU = " + maPhieu + " and MASACH = '" + maSach + "'"
                                  + "Update SACH SET CHOMUON = 1 where MASACH = '" + maSach + "'";
+                Program.conn.Close();
+                Program.KetNoi();
                 Program.ExecSqlNonQuery(strLenh);
                 this.fillToolStripButton1.PerformClick();
             }
