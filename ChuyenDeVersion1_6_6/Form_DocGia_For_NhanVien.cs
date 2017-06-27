@@ -250,6 +250,7 @@ namespace ChuyenDeVersion1_6_6
             fm.ShowDialog();
         }
         String cmnd;
+        Boolean coTaiKhoan = true;
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -260,6 +261,7 @@ namespace ChuyenDeVersion1_6_6
                     contextMenuStrip1.Items[4].Enabled = false;
                     contextMenuStrip1.Items[3].Enabled = false;
                     Program.muonSach = false;
+                    coTaiKhoan = false;
                 }
                 else
                 {
@@ -388,8 +390,43 @@ namespace ChuyenDeVersion1_6_6
             {
                 MessageBox.Show("Mã Lỗi : " + ex.ToString());
             }
-           
 
+            if (coTaiKhoan == false)
+            {
+                Program.conn.Close();
+                Program.KetNoi();
+                String strLenh = "exec TAO_LOGIN '" + ("DG" + maDG) + "','" + "123" + "','" + sOCMNDTextEdit.Text.Trim() + "','" + "DOCGIA" + "'";
+                int kq = 0;
+                try
+                {
+                    kq = Program.ExecSqlNonQuery(strLenh);
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.ToString());
+                }
+                if (kq == 0)
+                {
+                    MessageBox.Show("Tạo tài khoản thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //panel1.Visible = false;
+                    //panel1.Visible = false;
+                }
+                else if (kq == 1)
+                {
+                    tRANGTHAISpinEdit.Text = "0";
+                    MessageBox.Show("Tạo tài khoản không thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
+                }
+                else
+                {
+                    tRANGTHAISpinEdit.Text = "0";
+                    MessageBox.Show("Tạo tài khoản không thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
+                Program.conn.Close();
+                Program.KetNoi();
+                strLenh = "Update  DOCGIA set TRANGTHAI = 1 where MADG = " + maDG;
+                kq = Program.ExecSqlNonQuery(strLenh);
+            }
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
