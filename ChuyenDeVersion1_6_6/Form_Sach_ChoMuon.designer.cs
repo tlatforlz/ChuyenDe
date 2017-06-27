@@ -76,6 +76,17 @@
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnThoat = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.sP_DsSach_Theo_ISBNBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.sP_DsSach_Theo_ISBNTableAdapter = new ChuyenDeVersion1_6_6.QL_THUVIENDataSetTableAdapters.SP_DsSach_Theo_ISBNTableAdapter();
+            this.fillToolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.maSachToolStripLabel = new System.Windows.Forms.ToolStripLabel();
+            this.maSachToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.fillToolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.sP_DsSach_Theo_ISBNGridControl = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.qL_THUVIENDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sP_DS_ISBNBindingSource)).BeginInit();
             this.fillToolStrip.SuspendLayout();
@@ -87,6 +98,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.sP_DS_ISBNBindingNavigator)).BeginInit();
             this.sP_DS_ISBNBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cT_PhieuMuon_PhieuMuonDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sP_DsSach_Theo_ISBNBindingSource)).BeginInit();
+            this.fillToolStrip2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sP_DsSach_Theo_ISBNGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // qL_THUVIENDataSet
@@ -107,7 +122,7 @@
             this.fillToolStripButton});
             this.fillToolStrip.Location = new System.Drawing.Point(0, 25);
             this.fillToolStrip.Name = "fillToolStrip";
-            this.fillToolStrip.Size = new System.Drawing.Size(677, 25);
+            this.fillToolStrip.Size = new System.Drawing.Size(771, 25);
             this.fillToolStrip.TabIndex = 1;
             this.fillToolStrip.Text = "fillToolStrip";
             // 
@@ -242,7 +257,7 @@
             this.fillToolStripButton1});
             this.fillToolStrip1.Location = new System.Drawing.Point(0, 50);
             this.fillToolStrip1.Name = "fillToolStrip1";
-            this.fillToolStrip1.Size = new System.Drawing.Size(677, 25);
+            this.fillToolStrip1.Size = new System.Drawing.Size(771, 25);
             this.fillToolStrip1.TabIndex = 7;
             this.fillToolStrip1.Text = "fillToolStrip1";
             // 
@@ -399,7 +414,7 @@
             this.sP_DS_ISBNBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.sP_DS_ISBNBindingNavigator.Name = "sP_DS_ISBNBindingNavigator";
             this.sP_DS_ISBNBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.sP_DS_ISBNBindingNavigator.Size = new System.Drawing.Size(677, 25);
+            this.sP_DS_ISBNBindingNavigator.Size = new System.Drawing.Size(771, 25);
             this.sP_DS_ISBNBindingNavigator.TabIndex = 0;
             this.sP_DS_ISBNBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -481,11 +496,104 @@
             this.btnThoat.UseVisualStyleBackColor = true;
             this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DataSource = this.sP_DsSach_Theo_ISBNBindingSource;
+            this.comboBox1.DisplayMember = "MASACH";
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(470, 183);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 11;
+            this.comboBox1.ValueMember = "MASACH";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // sP_DsSach_Theo_ISBNBindingSource
+            // 
+            this.sP_DsSach_Theo_ISBNBindingSource.DataMember = "SP_DsSach_Theo_ISBN";
+            this.sP_DsSach_Theo_ISBNBindingSource.DataSource = this.qL_THUVIENDataSet;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(383, 191);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(50, 13);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Mã Sách";
+            // 
+            // sP_DsSach_Theo_ISBNTableAdapter
+            // 
+            this.sP_DsSach_Theo_ISBNTableAdapter.ClearBeforeFill = true;
+            // 
+            // fillToolStrip2
+            // 
+            this.fillToolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.maSachToolStripLabel,
+            this.maSachToolStripTextBox,
+            this.fillToolStripButton2});
+            this.fillToolStrip2.Location = new System.Drawing.Point(0, 75);
+            this.fillToolStrip2.Name = "fillToolStrip2";
+            this.fillToolStrip2.Size = new System.Drawing.Size(771, 25);
+            this.fillToolStrip2.TabIndex = 13;
+            this.fillToolStrip2.Text = "fillToolStrip2";
+            // 
+            // maSachToolStripLabel
+            // 
+            this.maSachToolStripLabel.Name = "maSachToolStripLabel";
+            this.maSachToolStripLabel.Size = new System.Drawing.Size(52, 22);
+            this.maSachToolStripLabel.Text = "maSach:";
+            // 
+            // maSachToolStripTextBox
+            // 
+            this.maSachToolStripTextBox.Name = "maSachToolStripTextBox";
+            this.maSachToolStripTextBox.Size = new System.Drawing.Size(100, 25);
+            // 
+            // fillToolStripButton2
+            // 
+            this.fillToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.fillToolStripButton2.Name = "fillToolStripButton2";
+            this.fillToolStripButton2.Size = new System.Drawing.Size(26, 22);
+            this.fillToolStripButton2.Text = "Fill";
+            this.fillToolStripButton2.Click += new System.EventHandler(this.fillToolStripButton2_Click);
+            // 
+            // sP_DsSach_Theo_ISBNGridControl
+            // 
+            this.sP_DsSach_Theo_ISBNGridControl.DataSource = this.sP_DsSach_Theo_ISBNBindingSource;
+            this.sP_DsSach_Theo_ISBNGridControl.Location = new System.Drawing.Point(451, 303);
+            this.sP_DsSach_Theo_ISBNGridControl.MainView = this.gridView1;
+            this.sP_DsSach_Theo_ISBNGridControl.Name = "sP_DsSach_Theo_ISBNGridControl";
+            this.sP_DsSach_Theo_ISBNGridControl.Size = new System.Drawing.Size(300, 220);
+            this.sP_DsSach_Theo_ISBNGridControl.TabIndex = 14;
+            this.sP_DsSach_Theo_ISBNGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.sP_DsSach_Theo_ISBNGridControl;
+            this.gridView1.Name = "gridView1";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(467, 234);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Mượn Sách";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // Form_Sach_ChoMuon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(677, 619);
+            this.ClientSize = new System.Drawing.Size(771, 619);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.sP_DsSach_Theo_ISBNGridControl);
+            this.Controls.Add(this.fillToolStrip2);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btnThoat);
             this.Controls.Add(this.cT_PhieuMuon_PhieuMuonDataGridView);
             this.Controls.Add(this.fillToolStrip1);
@@ -512,6 +620,11 @@
             this.sP_DS_ISBNBindingNavigator.ResumeLayout(false);
             this.sP_DS_ISBNBindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cT_PhieuMuon_PhieuMuonDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sP_DsSach_Theo_ISBNBindingSource)).EndInit();
+            this.fillToolStrip2.ResumeLayout(false);
+            this.fillToolStrip2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sP_DsSach_Theo_ISBNGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -565,5 +678,16 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
         private System.Windows.Forms.Button btnThoat;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.BindingSource sP_DsSach_Theo_ISBNBindingSource;
+        private QL_THUVIENDataSetTableAdapters.SP_DsSach_Theo_ISBNTableAdapter sP_DsSach_Theo_ISBNTableAdapter;
+        private System.Windows.Forms.ToolStrip fillToolStrip2;
+        private System.Windows.Forms.ToolStripLabel maSachToolStripLabel;
+        private System.Windows.Forms.ToolStripTextBox maSachToolStripTextBox;
+        private System.Windows.Forms.ToolStripButton fillToolStripButton2;
+        private DevExpress.XtraGrid.GridControl sP_DsSach_Theo_ISBNGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private System.Windows.Forms.Button button1;
     }
 }

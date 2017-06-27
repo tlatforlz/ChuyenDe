@@ -13,6 +13,7 @@ namespace ChuyenDeVersion1_6_6
 {
     public partial class FormDocGia_PhieuMuon : Form
     {
+        Boolean quaHan = false;
         public FormDocGia_PhieuMuon()
         {
             InitializeComponent();
@@ -46,11 +47,30 @@ namespace ChuyenDeVersion1_6_6
                 contextMenuStrip1.Items[1].Enabled = false;
                 contextMenuStrip2.Items[0].Enabled = false;
             }
-                //string strLenh = "exec SP_DocGia_PhieuMuon '" + Program.ml + "'";
-                //da1 = new SqlDataAdapter("exec SP_DocGia_PhieuMuon '" + Program.maDG + "'", Program.conn);
-                //da1.Fill(dt1);
-                //dataGridView1.DataSource = dt1;
+            SqlDataReader myReader2;
+            Program.conn.Close();
+            Program.KetNoi();
+            String strLenh2 = "exec SP_KiemTra_DocGia_QuaHan '" + Program.maDG + "'";
+            myReader2 = Program.ExecSqlDataReader(strLenh2);
+            if (myReader2 != null)
+            {
+                myReader2.Read();
+
+                //Program.username = myReader.GetString(0).ToString();     // Lay username
+                String dem = myReader2["dem"].ToString();
+                int dem1 = Int32.Parse(dem);
+                if (dem1 != 0)
+                {
+                    quaHan = true;
+                    contextMenuStrip1.Items[0].Enabled = false;
+                    contextMenuStrip1.Items[1].Enabled = false;
+                }
             }
+            //string strLenh = "exec SP_DocGia_PhieuMuon '" + Program.ml + "'";
+            //da1 = new SqlDataAdapter("exec SP_DocGia_PhieuMuon '" + Program.maDG + "'", Program.conn);
+            //da1.Fill(dt1);
+            //dataGridView1.DataSource = dt1;
+        }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -201,6 +221,25 @@ namespace ChuyenDeVersion1_6_6
                     return;
                 }
             }
+
+            SqlDataReader myReader2;
+            Program.conn.Close();
+            Program.KetNoi();
+            String strLenh2 = "exec SP_KiemTra_DocGia_QuaHan '" + Program.maDG + "'";
+            myReader2 = Program.ExecSqlDataReader(strLenh2);
+            if (myReader2 != null)
+            {
+                myReader2.Read();
+
+                //Program.username = myReader.GetString(0).ToString();     // Lay username
+                String dem = myReader2["dem"].ToString();
+                int dem1 = Int32.Parse(dem);
+                if (dem1 != 0)
+                {
+                    MessageBox.Show("Tồn tại sách quá hạn chưa trả.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
             btnThem.Enabled = false;
             txtTimKiem.Enabled = false;
             panel1.Enabled = true;
@@ -233,6 +272,7 @@ namespace ChuyenDeVersion1_6_6
 
         private void sP_DocGia_PhieuMuonDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            //Boolean muonSach = false;
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = (DataGridViewRow)sP_DocGia_PhieuMuonDataGridView.Rows[e.RowIndex];
@@ -253,8 +293,12 @@ namespace ChuyenDeVersion1_6_6
                 }
                 if(qL_THUVIENDataSet.Tables["CT_PhieuMuon_PhieuMuon"].Rows.Count <= 0&&Program.muonSach==true)
                 {
-                    contextMenuStrip1.Items[1].Enabled = true;
-                    contextMenuStrip1.Items[0].Enabled = true;
+                    if (quaHan == false)
+                    {
+                        contextMenuStrip1.Items[1].Enabled = true;
+                        contextMenuStrip1.Items[0].Enabled = true;
+                    }
+                    
                 }
               
             }

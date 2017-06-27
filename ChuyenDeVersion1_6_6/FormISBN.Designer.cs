@@ -61,6 +61,14 @@
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonXoaTG = new System.Windows.Forms.Button();
+            this.buttonThemTG = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.tACGIA_SACHGridControl = new DevExpress.XtraGrid.GridControl();
+            this.tACGIA_SACHBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnMaTacGia = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.cbxmatheloai = new System.Windows.Forms.ComboBox();
             this.mATLTextEdit = new DevExpress.XtraEditors.TextEdit();
@@ -96,6 +104,7 @@
             this.btnluu = new System.Windows.Forms.Button();
             this.btnxoa = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.tACGIA_SACHTableAdapter = new ChuyenDeVersion1_6_6.QL_THUVIENDataSetTableAdapters.TACGIA_SACHTableAdapter();
             iSBNLabel = new System.Windows.Forms.Label();
             tENSACHLabel = new System.Windows.Forms.Label();
             kHOSACHLabel = new System.Windows.Forms.Label();
@@ -114,6 +123,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.iSBNGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tACGIA_SACHGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tACGIA_SACHBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mATLTextEdit.Properties)).BeginInit();
             this.groupBox4.SuspendLayout();
@@ -287,14 +300,14 @@
             // iSBNGridControl
             // 
             this.iSBNGridControl.DataSource = this.iSBNBindingSource;
-            this.iSBNGridControl.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.iSBNGridControl.Location = new System.Drawing.Point(3, 18);
             this.iSBNGridControl.MainView = this.gridView1;
             this.iSBNGridControl.Name = "iSBNGridControl";
-            this.iSBNGridControl.Size = new System.Drawing.Size(1291, 344);
+            this.iSBNGridControl.Size = new System.Drawing.Size(1356, 191);
             this.iSBNGridControl.TabIndex = 0;
             this.iSBNGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.iSBNGridControl.Click += new System.EventHandler(this.iSBNGridControl_Click_1);
             this.iSBNGridControl.MouseCaptureChanged += new System.EventHandler(this.iSBNGridControl_MouseCaptureChanged);
             // 
             // gridView1
@@ -437,6 +450,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.buttonXoaTG);
+            this.groupBox1.Controls.Add(this.buttonThemTG);
+            this.groupBox1.Controls.Add(this.panel2);
             this.groupBox1.Controls.Add(this.groupBox6);
             this.groupBox1.Controls.Add(this.groupBox4);
             this.groupBox1.Controls.Add(this.label4);
@@ -467,11 +483,81 @@
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1297, 263);
+            this.groupBox1.Size = new System.Drawing.Size(1362, 301);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin chi tiết mã đầu sách";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // buttonXoaTG
+            // 
+            this.buttonXoaTG.Location = new System.Drawing.Point(1274, 87);
+            this.buttonXoaTG.Name = "buttonXoaTG";
+            this.buttonXoaTG.Size = new System.Drawing.Size(85, 23);
+            this.buttonXoaTG.TabIndex = 47;
+            this.buttonXoaTG.Text = "Xóa TG";
+            this.buttonXoaTG.UseVisualStyleBackColor = true;
+            // 
+            // buttonThemTG
+            // 
+            this.buttonThemTG.Location = new System.Drawing.Point(1274, 51);
+            this.buttonThemTG.Name = "buttonThemTG";
+            this.buttonThemTG.Size = new System.Drawing.Size(85, 23);
+            this.buttonThemTG.TabIndex = 46;
+            this.buttonThemTG.Text = "Thêm TG";
+            this.buttonThemTG.UseVisualStyleBackColor = true;
+            this.buttonThemTG.Click += new System.EventHandler(this.buttonThemTG_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.tACGIA_SACHGridControl);
+            this.panel2.Location = new System.Drawing.Point(1007, 126);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(352, 162);
+            this.panel2.TabIndex = 44;
+            // 
+            // tACGIA_SACHGridControl
+            // 
+            this.tACGIA_SACHGridControl.DataSource = this.tACGIA_SACHBindingSource;
+            this.tACGIA_SACHGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tACGIA_SACHGridControl.Location = new System.Drawing.Point(0, 0);
+            this.tACGIA_SACHGridControl.MainView = this.gridView2;
+            this.tACGIA_SACHGridControl.Name = "tACGIA_SACHGridControl";
+            this.tACGIA_SACHGridControl.Size = new System.Drawing.Size(352, 162);
+            this.tACGIA_SACHGridControl.TabIndex = 0;
+            this.tACGIA_SACHGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView2});
+            // 
+            // tACGIA_SACHBindingSource
+            // 
+            this.tACGIA_SACHBindingSource.DataMember = "TACGIA_SACH";
+            this.tACGIA_SACHBindingSource.DataSource = this.qL_THUVIENDataSet;
+            // 
+            // gridView2
+            // 
+            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn13,
+            this.gridColumnMaTacGia});
+            this.gridView2.GridControl = this.tACGIA_SACHGridControl;
+            this.gridView2.Name = "gridView2";
+            // 
+            // gridColumn13
+            // 
+            this.gridColumn13.Caption = "Mã Tác Giả";
+            this.gridColumn13.FieldName = "MATACGIA";
+            this.gridColumn13.Name = "gridColumn13";
+            this.gridColumn13.OptionsColumn.AllowEdit = false;
+            this.gridColumn13.Visible = true;
+            this.gridColumn13.VisibleIndex = 0;
+            // 
+            // gridColumnMaTacGia
+            // 
+            this.gridColumnMaTacGia.Caption = "Mã ISBN";
+            this.gridColumnMaTacGia.FieldName = "ISBN";
+            this.gridColumnMaTacGia.Name = "gridColumnMaTacGia";
+            this.gridColumnMaTacGia.OptionsColumn.AllowEdit = false;
+            this.gridColumnMaTacGia.Visible = true;
+            this.gridColumnMaTacGia.VisibleIndex = 1;
             // 
             // groupBox6
             // 
@@ -684,7 +770,8 @@
             this.iSBNTextEdit.Name = "iSBNTextEdit";
             this.iSBNTextEdit.Size = new System.Drawing.Size(178, 20);
             this.iSBNTextEdit.TabIndex = 1;
-            this.iSBNTextEdit.EditValueChanged += new System.EventHandler(this.iSBNTextEdit_EditValueChanged);
+            this.iSBNTextEdit.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.iSBNTextEdit_EditValueChanging);
+            this.iSBNTextEdit.TextChanged += new System.EventHandler(this.iSBNTextEdit_TextChanged);
             // 
             // nHAXBTextEdit
             // 
@@ -772,14 +859,14 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.iSBNGridControl);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(0, 323);
+            this.groupBox2.Location = new System.Drawing.Point(0, 359);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1297, 365);
+            this.groupBox2.Size = new System.Drawing.Size(1362, 215);
             this.groupBox2.TabIndex = 21;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh sách mã đầu sách";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // btnthem
             // 
@@ -844,17 +931,21 @@
             this.groupBox5.Controls.Add(this.btnsua);
             this.groupBox5.Controls.Add(this.btnthem);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox5.Location = new System.Drawing.Point(0, 263);
+            this.groupBox5.Location = new System.Drawing.Point(0, 301);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(1297, 60);
+            this.groupBox5.Size = new System.Drawing.Size(1362, 53);
             this.groupBox5.TabIndex = 20;
             this.groupBox5.TabStop = false;
+            // 
+            // tACGIA_SACHTableAdapter
+            // 
+            this.tACGIA_SACHTableAdapter.ClearBeforeFill = true;
             // 
             // FormISBN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1297, 741);
+            this.ClientSize = new System.Drawing.Size(1362, 586);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox1);
@@ -869,6 +960,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tACGIA_SACHGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tACGIA_SACHBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mATLTextEdit.Properties)).EndInit();
@@ -951,5 +1046,14 @@
         private System.Windows.Forms.Button btnluu;
         private System.Windows.Forms.Button btnxoa;
         private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.BindingSource tACGIA_SACHBindingSource;
+        private QL_THUVIENDataSetTableAdapters.TACGIA_SACHTableAdapter tACGIA_SACHTableAdapter;
+        private System.Windows.Forms.Button buttonXoaTG;
+        private System.Windows.Forms.Button buttonThemTG;
+        private DevExpress.XtraGrid.GridControl tACGIA_SACHGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnMaTacGia;
     }
 }

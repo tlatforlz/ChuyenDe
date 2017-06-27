@@ -32,6 +32,9 @@ namespace ChuyenDeVersion1_6_6
                // contextMenuStrip1.Items[1].Enabled = false;
                 contextMenuStrip2.Items[0].Enabled = false;
             }
+            contextMenuStrip1.Items[0].Visible = false;
+            sP_DsSach_Theo_ISBNGridControl.Visible = false;
+            fillToolStrip2.Visible = false;
         }
 
         private void mượnToolStripMenuItem_Click(object sender, EventArgs e)
@@ -84,7 +87,7 @@ namespace ChuyenDeVersion1_6_6
                 //Program.username = myReader.GetString(0).ToString();     // Lay username
                 
                 String dem = myReader["dem"].ToString();
-                MessageBox.Show("dem = " + dem);
+                //MessageBox.Show("dem = " + dem);
                 int dem1 = Int32.Parse(dem);
                 if (dem1 >= 3)
                 {
@@ -131,13 +134,18 @@ namespace ChuyenDeVersion1_6_6
         {
 
         }
-
+        String maSach_combox = "";
         private void sP_DS_ISBNDataGridView_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = (DataGridViewRow)sP_DS_ISBNDataGridView.Rows[e.RowIndex];
                 Program.maISBN = row.Cells[0].Value.ToString();
+                maSachToolStripTextBox.Text = Program.maISBN;
+                this.fillToolStripButton2.PerformClick();
+                comboBox1.SelectedIndex = 0;
+                maSach_combox = comboBox1.SelectedValue.ToString();
+                //MessageBox.Show("ma sach = " + maSach_combox);
                 // maphieuToolStripTextBox.Text = row.Cells[0].Value.ToString();
                 // Program.maPhieu = row.Cells[0].Value.ToString();
             }
@@ -276,6 +284,94 @@ namespace ChuyenDeVersion1_6_6
             if (DialogResult.Yes == MessageBox.Show("Bạn có chắc muốn thoát không?", "Thông báo", MessageBoxButtons.YesNo))
             {
                 this.Close();
+            }
+        }
+
+        private void fillToolStripButton2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.sP_DsSach_Theo_ISBNTableAdapter.Fill(this.qL_THUVIENDataSet.SP_DsSach_Theo_ISBN, maSachToolStripTextBox.Text);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                maSach_combox = comboBox1.SelectedValue.ToString();
+                //MessageBox.Show("ma sach = " + maSach_combox);
+            }
+            catch
+            {
+                maSachToolStripTextBox.Text = Program.maISBN;
+                this.fillToolStripButton2.PerformClick();
+                comboBox1.SelectedIndex = 0;
+                maSach_combox = comboBox1.SelectedValue.ToString();
+                //MessageBox.Show("ma sach = " + maSach_combox);
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            SqlDataReader myReader;
+            Program.conn.Close();
+            Program.KetNoi();
+            String strLenh = "exec SP_KiemTra_MuonSach '" + Program.maDG + "'";
+            myReader = Program.ExecSqlDataReader(strLenh);
+            if (myReader != null)
+            {
+                myReader.Read();
+
+                //Program.username = myReader.GetString(0).ToString();     // Lay username
+
+                String dem = myReader["dem"].ToString();
+                //MessageBox.Show("dem = " + dem);
+                int dem1 = Int32.Parse(dem);
+                if (dem1 >= 3)
+                {
+                    MessageBox.Show("Bạn đã mượn 3 cuốn chưa trả", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            try
+            {
+
+                if (dem >= 3)
+                {
+                    MessageBox.Show("Bạn chỉ được mượn tối đa 3 cuốn trong 1 phiếu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (maISBN.Contains(Program.maISBN))
+                {
+
+                    MessageBox.Show("Bạn đã mượn sách này nên không thể mượn thêm nữa. ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show(maISBN);
+                    return;
+                }
+                // Program.mlogin = "2";
+                Program.KetNoi();
+                string strLenh2 = "exec Sp_Them_CT_PhieuMuon '" + Program.maPhieu + "','" + maSach_combox + "','" + Program.username + "'";
+                Program.ExecSqlNonQuery(strLenh2);
+                dem++;
+                //MessageBox.Show("isbn sap them " + Program.maISBN);
+                maISBN += " " + Program.maISBN + " ";
+                //MessageBox.Show("mang isbn sau them " +maISBN);
+                this.tableAdapterManager.UpdateAll(this.qL_THUVIENDataSet);
+                maphieuToolStripTextBox.Text = Program.maPhieu;
+                this.fillToolStripButton.PerformClick();
+                this.fillToolStripButton1.PerformClick();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Mã Lỗi  : " + ex.Message + "\nThao Tác Không Thành Công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

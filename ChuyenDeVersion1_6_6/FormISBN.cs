@@ -19,6 +19,7 @@ namespace ChuyenDeVersion1_6_6
         {
            
             InitializeComponent();
+            this.iSBNTextEdit.Text = "";
             this.XuLiButton(true);
             this.XuLiTG_Sach(false);
             Lay_Ma_Ten_Tac_Gia();
@@ -63,7 +64,6 @@ namespace ChuyenDeVersion1_6_6
 
             while (myReader.Read() == true)
             {
-
                 this.cbxmatg.Items.Add(myReader.GetInt32(0));
                 this.cbxtentg.Items.Add(myReader.GetString(1));
             }
@@ -101,7 +101,6 @@ namespace ChuyenDeVersion1_6_6
 
             while (myReader.Read() == true)
             {
-
                 this.cbxmangonngu.Items.Add(myReader.GetInt32(0));
                 this.cbxtenngonngu.Items.Add(myReader.GetString(1));
             }
@@ -111,8 +110,10 @@ namespace ChuyenDeVersion1_6_6
 
         private void FormISBN_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'qL_THUVIENDataSet.TACGIA_SACH' table. You can move, or remove it, as needed.
+            this.tACGIA_SACHTableAdapter.Fill(this.qL_THUVIENDataSet.TACGIA_SACH, this.iSBNTextEdit.Text);
             // TODO: This line of code loads data into the 'qL_THUVIENDataSet.ISBN' table. You can move, or remove it, as needed.
-           // this.iSBNTableAdapter.Fill(this.qL_THUVIENDataSet.ISBN);
+            // this.iSBNTableAdapter.Fill(this.qL_THUVIENDataSet.ISBN);
             this.iSBNTableAdapter.FillByTrangThai(this.qL_THUVIENDataSet.ISBN);
 
             this.txbnoidung.Text = this.nOIDUNGTextEdit.Text;
@@ -181,8 +182,6 @@ namespace ChuyenDeVersion1_6_6
             
             this.iSBNBindingSource.AddNew();
            
-
-
             this.cbxmatheloai.SelectedIndex = 0;
             this.cbxmatg.SelectedIndex = 0;
             this.cbxmangonngu.SelectedIndex = 0;
@@ -252,14 +251,11 @@ namespace ChuyenDeVersion1_6_6
                 }
                 else
                 {
-
                     // người dùng chọn chức năng thêm
                     if (KT_Them == true)
                     {
-
                         try
                         {
-
                             Program.KetNoi();
                             String strLenh_1 = "dbo.sp_CapNhatTrangThai_ISBN";
                             Program.sqlcmd = Program.conn.CreateCommand();
@@ -413,6 +409,7 @@ namespace ChuyenDeVersion1_6_6
             this.iSBNTextEdit.Enabled = false;
             this.cbxmatheloai.Show();
             this.cbxmangonngu.Show();
+            XuLiTG_Sach(true);
         }
 
         private void btnhuy_Click(object sender, EventArgs e)
@@ -434,11 +431,6 @@ namespace ChuyenDeVersion1_6_6
            
         }
 
-        private void iSBNTextEdit_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void txbnoidung_TextChanged(object sender, EventArgs e)
         {
             //this.nOIDUNGTextEdit.Text = this.txbnoidung.Text;
@@ -446,12 +438,9 @@ namespace ChuyenDeVersion1_6_6
 
         private void iSBNGridControl_MouseCaptureChanged(object sender, EventArgs e)
         {
-            
-                this.txbnoidung.Text = this.nOIDUNGTextEdit.Text;
-                this.cbxmangonngu.Text = this.mANGONNGUSpinEdit.Text;
-                this.cbxmatheloai.Text = this.mATLTextEdit.Text;
-           
-
+            this.txbnoidung.Text = this.nOIDUNGTextEdit.Text;
+            this.cbxmangonngu.Text = this.mANGONNGUSpinEdit.Text;
+            this.cbxmatheloai.Text = this.mATLTextEdit.Text;
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -485,6 +474,64 @@ namespace ChuyenDeVersion1_6_6
         private void txbtimkiem_TextChanged(object sender, EventArgs e)
         {
             this.iSBNBindingSource.Filter = "ISBN LIKE '%" + this.txbtimkiem.Text + "%'" + " OR TENSACH LIKE '%" + this.txbtimkiem.Text + "%'" ;
+        }
+
+        private void iSBNGridControl_Click_1(object sender, EventArgs e)
+        {
+            this.tACGIA_SACHTableAdapter.Fill(this.qL_THUVIENDataSet.TACGIA_SACH, this.iSBNTextEdit.Text);
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void iSBNTextEdit_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
+        {
+
+        }
+
+        string newText = string.Empty;
+       
+        private void iSBNTextEdit_TextChanged(object sender, EventArgs e)
+        {
+            String oldText = newText;
+            
+            newText = iSBNTextEdit.Text;
+            try
+            {
+                this.tACGIA_SACHTableAdapter.Fill(this.qL_THUVIENDataSet.TACGIA_SACH, newText);
+            }catch(Exception er)
+            {
+
+            }
+           
+        }
+
+        private void buttonThemTG_Click(object sender, EventArgs e)
+        {
+            String ISBN = this.iSBNTextEdit.Text;
+            String MaTacGia = this.cbxmatg.Text;
+            // MessageBox.Show(ISBN + " " + MaTacGia);
+
+            //"SP_ThemTacGia_Sach"
+            Program.conn.Close();
+            Program.KetNoi();
+            String strLenh_1 = "dbo.SP_ThemTacGia_Sach";
+            Program.sqlcmd = Program.conn.CreateCommand();
+            Program.sqlcmd.CommandType = CommandType.StoredProcedure;
+            Program.sqlcmd.CommandText = strLenh_1;
+            Program.sqlcmd.Parameters.Add("@ISBN", SqlDbType.Int).Value = Int32.Parse(ISBN); // cập nhật trạng thái lại là 1 
+            Program.sqlcmd.Parameters.Add("@MaTacGia", SqlDbType.Int).Value = Int32.Parse(MaTacGia);
+            Program.sqlcmd.Parameters.Add("@Ret", SqlDbType.VarChar).Direction = ParameterDirection.ReturnValue; // lệnh trả về giá trị của sp
+            Program.sqlcmd.ExecuteNonQuery();
+            Program.conn.Close();
+            String Ret = Program.sqlcmd.Parameters["@Ret"].Value.ToString();
+            if(Ret == "0")
+            {
+                MessageBox.Show("Tác gỉa đã tồn tại trong sách","Thông báo", MessageBoxButtons.OK);
+            }
+            this.tACGIA_SACHTableAdapter.Fill(this.qL_THUVIENDataSet.TACGIA_SACH, this.iSBNTextEdit.Text);
         }
     }
 }

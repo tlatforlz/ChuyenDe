@@ -186,6 +186,7 @@
             this.gridColumn1.Caption = "MÃ ĐẦU SÁCH";
             this.gridColumn1.FieldName = "ISBN";
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
             // 
@@ -194,6 +195,7 @@
             this.gridColumn2.Caption = "MÃ SÁCH";
             this.gridColumn2.FieldName = "MASACH";
             this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
             // 
@@ -220,6 +222,7 @@
             this.gridColumn5.Caption = "MÃ NGĂN TỦ";
             this.gridColumn5.FieldName = "MANGANTU";
             this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 4;
             // 
