@@ -202,6 +202,7 @@
             this.gridColumn3.Caption = "TÌNH TRẠNG";
             this.gridColumn3.FieldName = "TINHTRANG";
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
             // 
@@ -210,6 +211,7 @@
             this.gridColumn4.Caption = "CHO MƯỢN";
             this.gridColumn4.FieldName = "CHOMUON";
             this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 3;
             // 

@@ -320,6 +320,7 @@
             this.gridColumn1.Caption = "Mã đầu sách";
             this.gridColumn1.FieldName = "ISBN";
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
             this.gridColumn1.Width = 83;
@@ -329,6 +330,7 @@
             this.gridColumn2.Caption = "Tên sách";
             this.gridColumn2.FieldName = "TENSACH";
             this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
             this.gridColumn2.Width = 83;
@@ -338,6 +340,7 @@
             this.gridColumn3.Caption = "Khổ sách";
             this.gridColumn3.FieldName = "KHOSACH";
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
             this.gridColumn3.Width = 83;
@@ -347,6 +350,7 @@
             this.gridColumn4.Caption = "Nội dung";
             this.gridColumn4.FieldName = "NOIDUNG";
             this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 3;
             this.gridColumn4.Width = 125;
@@ -356,6 +360,7 @@
             this.gridColumn5.Caption = "Hình ảnh Path";
             this.gridColumn5.FieldName = "HINHANHPATH";
             this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 4;
             this.gridColumn5.Width = 77;
@@ -365,6 +370,7 @@
             this.gridColumn6.Caption = "Ngày xuất bản";
             this.gridColumn6.FieldName = "NGAYXUATBAN";
             this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 5;
             this.gridColumn6.Width = 77;
@@ -374,6 +380,7 @@
             this.gridColumn7.Caption = "Lần xuất bản";
             this.gridColumn7.FieldName = "LANXUATBAN";
             this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 6;
             this.gridColumn7.Width = 77;
@@ -383,6 +390,7 @@
             this.gridColumn8.Caption = "Số trang";
             this.gridColumn8.FieldName = "SOTRANG";
             this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 7;
             this.gridColumn8.Width = 77;
@@ -392,6 +400,7 @@
             this.gridColumn9.Caption = "Giá";
             this.gridColumn9.FieldName = "GIA";
             this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 8;
             this.gridColumn9.Width = 77;
@@ -401,6 +410,7 @@
             this.gridColumn10.Caption = "Nhà xuất bản";
             this.gridColumn10.FieldName = "NHAXB";
             this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.OptionsColumn.AllowEdit = false;
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 9;
             this.gridColumn10.Width = 77;
@@ -410,6 +420,7 @@
             this.gridColumn11.Caption = "Mã ngôn ngữ";
             this.gridColumn11.FieldName = "MANGONNGU";
             this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.Visible = true;
             this.gridColumn11.VisibleIndex = 10;
             this.gridColumn11.Width = 77;
@@ -419,6 +430,7 @@
             this.gridColumn12.Caption = "Mã thể loại";
             this.gridColumn12.FieldName = "MATL";
             this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.OptionsColumn.AllowEdit = false;
             this.gridColumn12.Visible = true;
             this.gridColumn12.VisibleIndex = 11;
             this.gridColumn12.Width = 83;
