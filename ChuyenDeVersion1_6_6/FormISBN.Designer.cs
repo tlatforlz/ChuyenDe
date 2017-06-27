@@ -287,7 +287,7 @@
             // iSBNGridControl
             // 
             this.iSBNGridControl.DataSource = this.iSBNBindingSource;
-            this.iSBNGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.iSBNGridControl.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.iSBNGridControl.Location = new System.Drawing.Point(3, 18);
             this.iSBNGridControl.MainView = this.gridView1;
             this.iSBNGridControl.Name = "iSBNGridControl";

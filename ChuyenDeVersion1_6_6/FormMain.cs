@@ -90,15 +90,50 @@ namespace ChuyenDeVersion1_6_6
 
             if (Program.mGroup == "ADMIN")
             {
-                // this.ribbonPageGroupNV.Visible = false;
                 this.ribbonPageGroupTaoTaiKhoan.Visible = true;
                 this.ribbonPageGroupSaoLuu.Visible = true;
+                this.ribbonPageGroupSaoLuu.Visible = true;
+                this.ribbonPageGroupNhanVien.Visible = true;
+                this.ribbonPageGroupThongKeDocGia.Visible = true;
+                this.ribbonPageGroupThongKeQuaHan.Visible = true;
+                this.ribbonPageGroupISBN.Visible = true;
+                this.ribbonPageGroupSach.Visible = true;
+                this.ribbonPageGroupPhieuMuonTra.Visible = true;
+                this.ribbonPageGroupTacGia.Visible = true;
+                this.ribbonPageGroupDocGia.Visible = true;
+                this.ribbonPageGroupTaoTaiKhoan.Visible = true;
             }
+
             if (Program.mGroup == "NHANVIEN")
-            {   
-               // this.ribbonPageGroupNV.Visible = true;
+            {
+                this.ribbonPageGroupSaoLuu.Visible = true;
+                this.ribbonPageGroupNhanVien.Visible = true;
+                this.ribbonPageGroupThongKeDocGia.Visible = true;
+                this.ribbonPageGroupThongKeQuaHan.Visible = true;
+                this.ribbonPageGroupISBN.Visible = true;
+                this.ribbonPageGroupSach.Visible = true;
+                this.ribbonPageGroupPhieuMuonTra.Visible = true;
+                this.ribbonPageGroupTacGia.Visible = true;
+                this.ribbonPageGroupDocGia.Visible = true;
                 this.ribbonPageGroupTaoTaiKhoan.Visible = true;
                 this.ribbonPageGroupSaoLuu.Visible = false;
+                this.ribbonPageGroupNhanVien.Visible = false;
+                this.ribbonPageGroupThongKeDocGia.Visible = false;
+                this.ribbonPageGroupThongKeQuaHan.Visible = false;
+            }
+
+            if(Program.mGroup == "DOCGIA")
+            {
+                this.ribbonPageGroupTaoTaiKhoan.Visible = true;
+                this.ribbonPageGroupSaoLuu.Visible = false;
+                this.ribbonPageGroupNhanVien.Visible = false;
+                this.ribbonPageGroupThongKeDocGia.Visible = false;
+                this.ribbonPageGroupThongKeQuaHan.Visible = false;
+                this.ribbonPageGroupISBN.Visible = false;
+                this.ribbonPageGroupSach.Visible = false;
+                this.ribbonPageGroupPhieuMuonTra.Visible = false;
+                this.ribbonPageGroupTacGia.Visible = false;
+                this.ribbonPageGroupDocGia.Visible = false;
             }
 
             barButtonItemDangXuat.Links[0].Visible = true;
@@ -158,8 +193,9 @@ namespace ChuyenDeVersion1_6_6
 
         private void barButtonItemNhanVien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+
             FormNhanVien fm = new FormNhanVien();
-            TabCreating(Program.xtratabcontrol, "ISBN", fm);
+            TabCreating(Program.xtratabcontrol, "Nhân Viên", fm);
         }
 
         private void barButtonItemPhieuMuonTra_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -190,6 +226,18 @@ namespace ChuyenDeVersion1_6_6
         {
             FormDoiMatKhau fm = new FormDoiMatKhau();
             TabCreating(Program.xtratabcontrol, "Đổi Mật Khẩu", fm);
+        }
+
+        private void barButtonItemThongKeTanSuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            TanSuatXuatHien fm = new TanSuatXuatHien();
+            TabCreating(Program.xtratabcontrol, "Tần Suất Xuất Hiện", fm);
+        }
+
+        private void barButtonItemThongKeDocGia_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            MuonSachQuaHan fm = new MuonSachQuaHan();
+            TabCreating(Program.xtratabcontrol, "Thống Kê Độc Giả", fm);
         }
     }
 }

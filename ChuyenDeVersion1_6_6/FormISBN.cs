@@ -17,6 +17,7 @@ namespace ChuyenDeVersion1_6_6
 
         public FormISBN()
         {
+           
             InitializeComponent();
             this.XuLiButton(true);
             this.XuLiTG_Sach(false);
@@ -25,7 +26,6 @@ namespace ChuyenDeVersion1_6_6
             Lay_Ma_Ten_The_Loai();
             this.cbxmatheloai.Hide();
             this.cbxmangonngu.Hide();
-           
         }
 
         private void iSBNBindingNavigatorSaveItem_Click(object sender, EventArgs e)
