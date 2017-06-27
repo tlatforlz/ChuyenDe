@@ -510,9 +510,28 @@ namespace ChuyenDeVersion1_6_6
 
         private void buttonThemTG_Click(object sender, EventArgs e)
         {
+            //sp_KiemTraMaISBN_SACH
+
+
             String ISBN = this.iSBNTextEdit.Text;
             String MaTacGia = this.cbxmatg.Text;
-            // MessageBox.Show(ISBN + " " + MaTacGia);
+
+            Program.conn.Close();
+            Program.KetNoi();
+            String strLenh_2 = "dbo.SP_KiemTraISBN";
+            Program.sqlcmd = Program.conn.CreateCommand();
+            Program.sqlcmd.CommandType = CommandType.StoredProcedure;
+            Program.sqlcmd.CommandText = strLenh_2;
+            Program.sqlcmd.Parameters.Add("@MAISBN", SqlDbType.VarChar).Value = ISBN; // cập nhật trạng thái lại là 1 
+            Program.sqlcmd.Parameters.Add("@Ret", SqlDbType.VarChar).Direction = ParameterDirection.ReturnValue; // lệnh trả về giá trị của sp
+            Program.sqlcmd.ExecuteNonQuery();
+            Program.conn.Close();
+            String Ret1 = Program.sqlcmd.Parameters["@Ret"].Value.ToString();
+            if (Ret1 == "0")
+            {
+                MessageBox.Show("Lưu ISBN trước khi thêm tác giả ! ", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
 
             //"SP_ThemTacGia_Sach"
             Program.conn.Close();
@@ -531,6 +550,25 @@ namespace ChuyenDeVersion1_6_6
             {
                 MessageBox.Show("Tác gỉa đã tồn tại trong sách","Thông báo", MessageBoxButtons.OK);
             }
+            this.tACGIA_SACHTableAdapter.Fill(this.qL_THUVIENDataSet.TACGIA_SACH, this.iSBNTextEdit.Text);
+        }
+
+        private void buttonXoaTG_Click(object sender, EventArgs e)
+        {
+            String ISBN = gridView2.GetRowCellValue(gridView2.FocusedRowHandle, "ISBN").ToString();
+            String MaTacGia = gridView2.GetRowCellValue(gridView2.FocusedRowHandle, "MATACGIA").ToString();
+            //SP_XoaTacGiaSach
+            Program.conn.Close();
+            Program.KetNoi();
+            String strLenh_1 = "dbo.SP_XoaTacGiaSach";
+            Program.sqlcmd = Program.conn.CreateCommand();
+            Program.sqlcmd.CommandType = CommandType.StoredProcedure;
+            Program.sqlcmd.CommandText = strLenh_1;
+            Program.sqlcmd.Parameters.Add("@ISBN", SqlDbType.Int).Value = Int32.Parse(ISBN); // cập nhật trạng thái lại là 1 
+            Program.sqlcmd.Parameters.Add("@MaTacGia", SqlDbType.Int).Value = Int32.Parse(MaTacGia);
+            Program.sqlcmd.Parameters.Add("@Ret", SqlDbType.VarChar).Direction = ParameterDirection.ReturnValue; // lệnh trả về giá trị của sp
+            Program.sqlcmd.ExecuteNonQuery();
+            Program.conn.Close();
             this.tACGIA_SACHTableAdapter.Fill(this.qL_THUVIENDataSet.TACGIA_SACH, this.iSBNTextEdit.Text);
         }
     }

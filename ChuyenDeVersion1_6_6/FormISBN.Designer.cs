@@ -497,6 +497,7 @@
             this.buttonXoaTG.TabIndex = 47;
             this.buttonXoaTG.Text = "Xóa TG";
             this.buttonXoaTG.UseVisualStyleBackColor = true;
+            this.buttonXoaTG.Click += new System.EventHandler(this.buttonXoaTG_Click);
             // 
             // buttonThemTG
             // 
