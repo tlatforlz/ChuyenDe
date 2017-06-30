@@ -18,8 +18,8 @@ namespace ChuyenDeVersion1_6_6
 
         public static String servername = "DESKTOP-Q8TO312\\TLATFORLZ";
         public static String username = "";
-        public static String mlogin = "sa";
-        public static String password = "root";
+        public static String mlogin = "";
+        public static String password = "";
 
         public static String database = "QL_THUVIEN";
         public static String remotelogin = "";
@@ -34,7 +34,7 @@ namespace ChuyenDeVersion1_6_6
         public static String maISBN = "";
         public static int DocGiaPM = 0;
         public static String maSach = "";
-
+        public static int CheckEdit = 0;
         public static BindingSource bds_dspm = new BindingSource();
         public static FormMain frmMain;
       

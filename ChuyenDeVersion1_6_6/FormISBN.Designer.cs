@@ -61,8 +61,6 @@
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.buttonXoaTG = new System.Windows.Forms.Button();
-            this.buttonThemTG = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tACGIA_SACHGridControl = new DevExpress.XtraGrid.GridControl();
             this.tACGIA_SACHBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -81,7 +79,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txbtimkiem = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.buttonXoaTG = new System.Windows.Forms.Button();
             this.cbxmatg = new System.Windows.Forms.ComboBox();
+            this.buttonThemTG = new System.Windows.Forms.Button();
             this.cbxtentg = new System.Windows.Forms.ComboBox();
             this.tRANGTHAISpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.label2 = new System.Windows.Forms.Label();
@@ -450,8 +450,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.buttonXoaTG);
-            this.groupBox1.Controls.Add(this.buttonThemTG);
             this.groupBox1.Controls.Add(this.panel2);
             this.groupBox1.Controls.Add(this.groupBox6);
             this.groupBox1.Controls.Add(this.groupBox4);
@@ -488,26 +486,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin chi tiết mã đầu sách";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // buttonXoaTG
-            // 
-            this.buttonXoaTG.Location = new System.Drawing.Point(1274, 87);
-            this.buttonXoaTG.Name = "buttonXoaTG";
-            this.buttonXoaTG.Size = new System.Drawing.Size(85, 23);
-            this.buttonXoaTG.TabIndex = 47;
-            this.buttonXoaTG.Text = "Xóa TG";
-            this.buttonXoaTG.UseVisualStyleBackColor = true;
-            this.buttonXoaTG.Click += new System.EventHandler(this.buttonXoaTG_Click);
-            // 
-            // buttonThemTG
-            // 
-            this.buttonThemTG.Location = new System.Drawing.Point(1274, 51);
-            this.buttonThemTG.Name = "buttonThemTG";
-            this.buttonThemTG.Size = new System.Drawing.Size(85, 23);
-            this.buttonThemTG.TabIndex = 46;
-            this.buttonThemTG.Text = "Thêm TG";
-            this.buttonThemTG.UseVisualStyleBackColor = true;
-            this.buttonThemTG.Click += new System.EventHandler(this.buttonThemTG_Click);
             // 
             // panel2
             // 
@@ -675,17 +653,29 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.buttonXoaTG);
             this.groupBox3.Controls.Add(this.cbxmatg);
+            this.groupBox3.Controls.Add(this.buttonThemTG);
             this.groupBox3.Controls.Add(this.cbxtentg);
             this.groupBox3.Controls.Add(this.tRANGTHAISpinEdit);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.txt);
-            this.groupBox3.Location = new System.Drawing.Point(1007, 36);
+            this.groupBox3.Location = new System.Drawing.Point(995, 28);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(261, 80);
+            this.groupBox3.Size = new System.Drawing.Size(367, 80);
             this.groupBox3.TabIndex = 31;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tác giả sách";
+            // 
+            // buttonXoaTG
+            // 
+            this.buttonXoaTG.Location = new System.Drawing.Point(279, 49);
+            this.buttonXoaTG.Name = "buttonXoaTG";
+            this.buttonXoaTG.Size = new System.Drawing.Size(76, 23);
+            this.buttonXoaTG.TabIndex = 47;
+            this.buttonXoaTG.Text = "Xóa TG";
+            this.buttonXoaTG.UseVisualStyleBackColor = true;
+            this.buttonXoaTG.Click += new System.EventHandler(this.buttonXoaTG_Click);
             // 
             // cbxmatg
             // 
@@ -695,6 +685,16 @@
             this.cbxmatg.Size = new System.Drawing.Size(158, 23);
             this.cbxmatg.TabIndex = 26;
             this.cbxmatg.SelectedIndexChanged += new System.EventHandler(this.cbxmatg_SelectedIndexChanged);
+            // 
+            // buttonThemTG
+            // 
+            this.buttonThemTG.Location = new System.Drawing.Point(279, 16);
+            this.buttonThemTG.Name = "buttonThemTG";
+            this.buttonThemTG.Size = new System.Drawing.Size(76, 23);
+            this.buttonThemTG.TabIndex = 46;
+            this.buttonThemTG.Text = "Thêm TG";
+            this.buttonThemTG.UseVisualStyleBackColor = true;
+            this.buttonThemTG.Click += new System.EventHandler(this.buttonThemTG_Click);
             // 
             // cbxtentg
             // 
@@ -771,8 +771,10 @@
             this.iSBNTextEdit.Name = "iSBNTextEdit";
             this.iSBNTextEdit.Size = new System.Drawing.Size(178, 20);
             this.iSBNTextEdit.TabIndex = 1;
+            this.iSBNTextEdit.EditValueChanged += new System.EventHandler(this.iSBNTextEdit_EditValueChanged);
             this.iSBNTextEdit.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.iSBNTextEdit_EditValueChanging);
             this.iSBNTextEdit.TextChanged += new System.EventHandler(this.iSBNTextEdit_TextChanged);
+            this.iSBNTextEdit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.iSBNTextEdit_KeyPress);
             // 
             // nHAXBTextEdit
             // 

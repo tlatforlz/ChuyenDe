@@ -21,6 +21,18 @@ namespace ChuyenDeVersion1_6_6
             //SqlDataAdapter da1;
             //DataTable dt1 = new DataTable();
             //MessageBox.Show(contextMenuStrip1.Items[0].ToString());
+            if (Program.mGroup == "DOCGIA")
+            {
+                
+                panel1.Visible = false;
+                panel2.Visible = false;
+                contextMenuStrip1.Items[0].Visible = false;
+                contextMenuStrip1.Items[1].Visible = false;
+                contextMenuStrip2.Items[0].Visible = false;
+                contextMenuStrip2.Items[1].Visible = false;
+                Program.maDG = Program.username;
+
+            }
             mAPHIEUSpinEdit.Enabled = false;
             contextMenuStrip1.Items[0].Enabled = false;
             contextMenuStrip1.Items[1].Enabled = false;
@@ -30,10 +42,7 @@ namespace ChuyenDeVersion1_6_6
             panel1.Enabled = false;
             // sP_DocGia_PhieuMuonBindingNavigator.Visible = false; ////// ??????????????????
             Program.KetNoi();
-            if (Program.mGroup == "DOCGIA")
-            {
-                Program.maDG = Program.mlogin;
-            }
+            
             //Program.maDG = "4";
             maDocGiaToolStripTextBox.Text = Program.maDG;
             this.fillToolStripButton.PerformClick();

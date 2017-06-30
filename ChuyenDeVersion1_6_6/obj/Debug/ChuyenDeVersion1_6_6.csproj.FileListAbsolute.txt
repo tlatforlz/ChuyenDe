@@ -483,3 +483,4 @@ C:\Users\tranl\Desktop\24_6_ChuyenDe\24_6_ChuyenDe\ChuyenDeVersion1_6_6\ChuyenDe
 C:\Users\tranl\Desktop\24_6_ChuyenDe\24_6_ChuyenDe\ChuyenDeVersion1_6_6\ChuyenDeVersion1_6_6\bin\Debug\es\DevExpress.XtraScheduler.v16.1.Core.resources.dll
 C:\Users\tranl\Desktop\24_6_ChuyenDe\24_6_ChuyenDe\ChuyenDeVersion1_6_6\ChuyenDeVersion1_6_6\bin\Debug\ja\DevExpress.XtraScheduler.v16.1.Core.resources.dll
 C:\Users\tranl\Desktop\24_6_ChuyenDe\24_6_ChuyenDe\ChuyenDeVersion1_6_6\ChuyenDeVersion1_6_6\bin\Debug\ru\DevExpress.XtraScheduler.v16.1.Core.resources.dll
+C:\Users\tranl\Desktop\24_6_ChuyenDe\24_6_ChuyenDe\ChuyenDeVersion1_6_6\ChuyenDeVersion1_6_6\obj\Debug\ChuyenDeVersion1_6_6.TimKiemSach.resources

@@ -68,6 +68,7 @@
             this.fillToolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.trảSáchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hủyTrảSáchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnThem = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -82,7 +83,7 @@
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewCheckBoxColumn3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.hủyTrảSáchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel2 = new System.Windows.Forms.Panel();
             mAPHIEULabel = new System.Windows.Forms.Label();
             mADGLabel = new System.Windows.Forms.Label();
             hINHTHUCLabel = new System.Windows.Forms.Label();
@@ -105,6 +106,7 @@
             this.fillToolStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cT_PhieuMuon_PhieuMuonDataGridView)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // mAPHIEULabel
@@ -451,18 +453,25 @@
             this.trảSáchToolStripMenuItem,
             this.hủyTrảSáchToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(153, 70);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(144, 48);
             // 
             // trảSáchToolStripMenuItem
             // 
             this.trảSáchToolStripMenuItem.Name = "trảSáchToolStripMenuItem";
-            this.trảSáchToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.trảSáchToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.trảSáchToolStripMenuItem.Text = "Trả Sách";
             this.trảSáchToolStripMenuItem.Click += new System.EventHandler(this.trảSáchToolStripMenuItem_Click);
             // 
+            // hủyTrảSáchToolStripMenuItem
+            // 
+            this.hủyTrảSáchToolStripMenuItem.Name = "hủyTrảSáchToolStripMenuItem";
+            this.hủyTrảSáchToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.hủyTrảSáchToolStripMenuItem.Text = "Hủy Trả Sách";
+            this.hủyTrảSáchToolStripMenuItem.Click += new System.EventHandler(this.hủyTrảSáchToolStripMenuItem_Click);
+            // 
             // btnThem
             // 
-            this.btnThem.Location = new System.Drawing.Point(593, 131);
+            this.btnThem.Location = new System.Drawing.Point(82, 60);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(75, 23);
             this.btnThem.TabIndex = 6;
@@ -491,7 +500,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(782, 131);
+            this.button1.Location = new System.Drawing.Point(195, 60);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 9;
@@ -501,7 +510,7 @@
             // 
             // txtTimKiem
             // 
-            this.txtTimKiem.Location = new System.Drawing.Point(669, 83);
+            this.txtTimKiem.Location = new System.Drawing.Point(82, 12);
             this.txtTimKiem.Name = "txtTimKiem";
             this.txtTimKiem.Size = new System.Drawing.Size(148, 20);
             this.txtTimKiem.TabIndex = 10;
@@ -510,7 +519,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(590, 86);
+            this.label3.Location = new System.Drawing.Point(3, 15);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(50, 13);
             this.label3.TabIndex = 11;
@@ -584,29 +593,31 @@
             this.dataGridViewCheckBoxColumn3.Name = "dataGridViewCheckBoxColumn3";
             this.dataGridViewCheckBoxColumn3.ReadOnly = true;
             // 
-            // hủyTrảSáchToolStripMenuItem
+            // panel2
             // 
-            this.hủyTrảSáchToolStripMenuItem.Name = "hủyTrảSáchToolStripMenuItem";
-            this.hủyTrảSáchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.hủyTrảSáchToolStripMenuItem.Text = "Hủy Trả Sách";
-            this.hủyTrảSáchToolStripMenuItem.Click += new System.EventHandler(this.hủyTrảSáchToolStripMenuItem_Click);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.btnThem);
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.txtTimKiem);
+            this.panel2.Location = new System.Drawing.Point(581, 53);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(288, 100);
+            this.panel2.TabIndex = 13;
             // 
             // FormDocGia_PhieuMuon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(919, 573);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.cT_PhieuMuon_PhieuMuonDataGridView);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtTimKiem);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnThem);
             this.Controls.Add(this.fillToolStrip1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.sP_DocGia_PhieuMuonDataGridView);
             this.Controls.Add(this.fillToolStrip);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormDocGia_PhieuMuon";
             this.Text = "FormDocGia";
             this.Load += new System.EventHandler(this.FormDocGia_PhieuMuon_Load);
@@ -630,6 +641,8 @@
             this.fillToolStrip1.PerformLayout();
             this.contextMenuStrip2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cT_PhieuMuon_PhieuMuonDataGridView)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -686,5 +699,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn3;
         private System.Windows.Forms.ToolStripMenuItem hủyTrảSáchToolStripMenuItem;
+        private System.Windows.Forms.Panel panel2;
     }
 }

@@ -175,6 +175,12 @@
     <Compile Include="ThongKeDocGiaMuonSachQuaHan.designer.cs">
       <DependentUpon>ThongKeDocGiaMuonSachQuaHan.cs</DependentUpon>
     </Compile>
+    <Compile Include="TimKiemSach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TimKiemSach.designer.cs">
+      <DependentUpon>TimKiemSach.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormBackUpRestore.resx">
       <DependentUpon>FormBackUpRestore.cs</DependentUpon>
     </EmbeddedResource>
@@ -233,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ThongKeDocGiaMuonSachQuaHan.resx">
       <DependentUpon>ThongKeDocGiaMuonSachQuaHan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimKiemSach.resx">
+      <DependentUpon>TimKiemSach.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">

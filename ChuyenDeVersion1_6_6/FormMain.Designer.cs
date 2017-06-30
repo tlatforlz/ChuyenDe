@@ -42,10 +42,13 @@
             this.barButtonItemPhieuMuonTra = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemThongKeTanSuat = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemThongKeDocGia = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemTimKiem = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemPhieuMuonDocGa = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroupTaoTaiKhoan = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroupSaoLuu = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageDanhMuc = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroupNhanVien = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroupDocGia = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -61,6 +64,8 @@
             this.toolStripStatusLabelTen = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelNhom = new System.Windows.Forms.ToolStripStatusLabel();
             this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
+            this.ribbonPageGroupPhieuMuonDocGia = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.barButtonItemPhieuMuonDocGia = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
@@ -82,15 +87,18 @@
             this.barButtonItemSaoLuu,
             this.barButtonItemPhieuMuonTra,
             this.barButtonItemThongKeTanSuat,
-            this.barButtonItemThongKeDocGia});
+            this.barButtonItemThongKeDocGia,
+            this.barButtonItemTimKiem,
+            this.barButtonItemPhieuMuonDocGa,
+            this.barButtonItemPhieuMuonDocGia});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 13;
+            this.ribbonControl1.MaxItemId = 37;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
             this.ribbonPageDanhMuc});
             this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
-            this.ribbonControl1.Size = new System.Drawing.Size(758, 143);
+            this.ribbonControl1.Size = new System.Drawing.Size(851, 143);
             // 
             // barButtonItemDangNhap
             // 
@@ -176,12 +184,26 @@
             this.barButtonItemThongKeDocGia.Name = "barButtonItemThongKeDocGia";
             this.barButtonItemThongKeDocGia.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemThongKeDocGia_ItemClick);
             // 
+            // barButtonItemTimKiem
+            // 
+            this.barButtonItemTimKiem.Caption = "TÌM KIẾM";
+            this.barButtonItemTimKiem.Id = 13;
+            this.barButtonItemTimKiem.Name = "barButtonItemTimKiem";
+            this.barButtonItemTimKiem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemTimKiem_ItemClick);
+            // 
+            // barButtonItemPhieuMuonDocGa
+            // 
+            this.barButtonItemPhieuMuonDocGa.Caption = "PHIẾU MƯỢN ĐỘC GIẢ";
+            this.barButtonItemPhieuMuonDocGa.Id = 14;
+            this.barButtonItemPhieuMuonDocGa.Name = "barButtonItemPhieuMuonDocGa";
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1,
             this.ribbonPageGroupTaoTaiKhoan,
-            this.ribbonPageGroupSaoLuu});
+            this.ribbonPageGroupSaoLuu,
+            this.ribbonPageGroup2});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "HỆ THỐNG";
             // 
@@ -204,6 +226,12 @@
             this.ribbonPageGroupSaoLuu.Name = "ribbonPageGroupSaoLuu";
             this.ribbonPageGroupSaoLuu.Text = "ribbonPageGroup7";
             // 
+            // ribbonPageGroup2
+            // 
+            this.ribbonPageGroup2.ItemLinks.Add(this.barButtonItemTimKiem);
+            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
+            this.ribbonPageGroup2.Text = "ribbonPageGroup2";
+            // 
             // ribbonPageDanhMuc
             // 
             this.ribbonPageDanhMuc.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -214,7 +242,8 @@
             this.ribbonPageGroupTacGia,
             this.ribbonPageGroupPhieuMuonTra,
             this.ribbonPageGroupThongKeQuaHan,
-            this.ribbonPageGroupThongKeDocGia});
+            this.ribbonPageGroupThongKeDocGia,
+            this.ribbonPageGroupPhieuMuonDocGia});
             this.ribbonPageDanhMuc.Name = "ribbonPageDanhMuc";
             this.ribbonPageDanhMuc.Text = "DANH MỤC";
             // 
@@ -266,7 +295,7 @@
             this.toolStripStatusLabelNhom});
             this.statusStrip1.Location = new System.Drawing.Point(0, 338);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(758, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(851, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -294,17 +323,29 @@
             this.xtraTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraTabControl.Location = new System.Drawing.Point(0, 143);
             this.xtraTabControl.Name = "xtraTabControl";
-            this.xtraTabControl.Size = new System.Drawing.Size(758, 195);
+            this.xtraTabControl.Size = new System.Drawing.Size(851, 195);
             this.xtraTabControl.TabIndex = 3;
             this.xtraTabControl.CloseButtonClick += new System.EventHandler(this.xtraTabControl_CloseButtonClick);
             this.xtraTabControl.Click += new System.EventHandler(this.FormMain_Load);
+            // 
+            // ribbonPageGroupPhieuMuonDocGia
+            // 
+            this.ribbonPageGroupPhieuMuonDocGia.ItemLinks.Add(this.barButtonItemPhieuMuonDocGia);
+            this.ribbonPageGroupPhieuMuonDocGia.Name = "ribbonPageGroupPhieuMuonDocGia";
+            // 
+            // barButtonItemPhieuMuonDocGia
+            // 
+            this.barButtonItemPhieuMuonDocGia.Caption = "PHIẾU MƯỢN ĐỘC GIẢ";
+            this.barButtonItemPhieuMuonDocGia.Id = 30;
+            this.barButtonItemPhieuMuonDocGia.Name = "barButtonItemPhieuMuonDocGia";
+            this.barButtonItemPhieuMuonDocGia.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemPhieuMuonDocGia_ItemClick);
             // 
             // FormMain
             // 
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.False;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(758, 360);
+            this.ClientSize = new System.Drawing.Size(851, 360);
             this.Controls.Add(this.xtraTabControl);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.ribbonControl1);
@@ -355,6 +396,11 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItemThongKeDocGia;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupThongKeQuaHan;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupThongKeDocGia;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemTimKiem;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemPhieuMuonDocGa;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemPhieuMuonDocGia;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupPhieuMuonDocGia;
     }
 }
 

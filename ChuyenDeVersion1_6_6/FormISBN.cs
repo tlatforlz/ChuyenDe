@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -47,9 +48,11 @@ namespace ChuyenDeVersion1_6_6
         }
 
         private void XuLiTG_Sach(bool KT)
-        {   
-                this.cbxtentg.Enabled = KT;
-                this.cbxmatg.Enabled = KT;
+        {
+            this.cbxtentg.Enabled = KT;
+            this.cbxmatg.Enabled = KT;
+            this.buttonThemTG.Enabled = KT;
+            this.buttonXoaTG.Enabled = KT;
         }
 
         private void Lay_Ma_Ten_Tac_Gia()
@@ -200,7 +203,7 @@ namespace ChuyenDeVersion1_6_6
 
         private void btnluu_Click(object sender, EventArgs e)
         {
-
+            Program.CheckEdit = 0;
             this.mANGONNGUSpinEdit.Text = this.cbxmangonngu.Text;
             this.mATLTextEdit.Text = this.cbxmatheloai.Text;
             
@@ -415,7 +418,7 @@ namespace ChuyenDeVersion1_6_6
         private void btnhuy_Click(object sender, EventArgs e)
         {
             KT_Them = false;
-           
+            Program.CheckEdit = 0;  
             this.iSBNBindingSource.CancelEdit();
             
             this.XuLiButton(true);
@@ -428,7 +431,25 @@ namespace ChuyenDeVersion1_6_6
             this.iSBNTableAdapter.FillByTrangThai(this.qL_THUVIENDataSet.ISBN);
             this.txbnoidung.Text = this.nOIDUNGTextEdit.Text;
 
-           
+
+            try
+            {
+                Program.conn.Close();
+                Program.KetNoi();
+                String strLenh_1 = "dbo.SP_HuyThemISBN";
+                Program.sqlcmd = Program.conn.CreateCommand();
+                Program.sqlcmd.CommandType = CommandType.StoredProcedure;
+                Program.sqlcmd.CommandText = strLenh_1;
+                Program.sqlcmd.Parameters.Add("@ISBN", SqlDbType.Int).Value = Int32.Parse(this.iSBNTextEdit.Text); // cập nhật trạng thái lại là 1 
+                Program.sqlcmd.Parameters.Add("@Ret", SqlDbType.VarChar).Direction = ParameterDirection.ReturnValue; // lệnh trả về giá trị của sp
+                Program.sqlcmd.ExecuteNonQuery();
+                Program.conn.Close();
+                this.tACGIA_SACHTableAdapter.Fill(this.qL_THUVIENDataSet.TACGIA_SACH, this.iSBNTextEdit.Text);
+            }
+            catch (Exception err)
+            {
+
+            }
         }
 
         private void txbnoidung_TextChanged(object sender, EventArgs e)
@@ -495,44 +516,45 @@ namespace ChuyenDeVersion1_6_6
        
         private void iSBNTextEdit_TextChanged(object sender, EventArgs e)
         {
-            String oldText = newText;
-            
-            newText = iSBNTextEdit.Text;
-            try
+            if(Program.CheckEdit == 1)
+            {
+                String oldText = newText;
+                newText = iSBNTextEdit.Text;
+                try
+                {
+                    Program.conn.Close();
+                    Program.KetNoi();
+                    String strLenh_1 = "dbo.SP_EditISBNChangeTacGia_Sach";
+                    Program.sqlcmd = Program.conn.CreateCommand();
+                    Program.sqlcmd.CommandType = CommandType.StoredProcedure;
+                    Program.sqlcmd.CommandText = strLenh_1;
+                    Program.sqlcmd.Parameters.Add("@ISBNOld", SqlDbType.Int).Value = Int32.Parse(oldText); // cập nhật trạng thái lại là 1 
+                    Program.sqlcmd.Parameters.Add("@ISBNNew", SqlDbType.Int).Value = Int32.Parse(newText);
+                    Program.sqlcmd.Parameters.Add("@Ret", SqlDbType.VarChar).Direction = ParameterDirection.ReturnValue; // lệnh trả về giá trị của sp
+                    Program.sqlcmd.ExecuteNonQuery();
+                    Program.conn.Close();
+                    this.tACGIA_SACHTableAdapter.Fill(this.qL_THUVIENDataSet.TACGIA_SACH, newText);
+                }
+                catch (Exception er)
+                {
+
+                }
+            }else
             {
                 this.tACGIA_SACHTableAdapter.Fill(this.qL_THUVIENDataSet.TACGIA_SACH, newText);
-            }catch(Exception er)
-            {
-
             }
-           
         }
 
         private void buttonThemTG_Click(object sender, EventArgs e)
         {
             //sp_KiemTraMaISBN_SACH
-
+            //SP_KiemTraISBN
 
             String ISBN = this.iSBNTextEdit.Text;
+
+
             String MaTacGia = this.cbxmatg.Text;
-
-            Program.conn.Close();
-            Program.KetNoi();
-            String strLenh_2 = "dbo.SP_KiemTraISBN";
-            Program.sqlcmd = Program.conn.CreateCommand();
-            Program.sqlcmd.CommandType = CommandType.StoredProcedure;
-            Program.sqlcmd.CommandText = strLenh_2;
-            Program.sqlcmd.Parameters.Add("@MAISBN", SqlDbType.VarChar).Value = ISBN; // cập nhật trạng thái lại là 1 
-            Program.sqlcmd.Parameters.Add("@Ret", SqlDbType.VarChar).Direction = ParameterDirection.ReturnValue; // lệnh trả về giá trị của sp
-            Program.sqlcmd.ExecuteNonQuery();
-            Program.conn.Close();
-            String Ret1 = Program.sqlcmd.Parameters["@Ret"].Value.ToString();
-            if (Ret1 == "0")
-            {
-                MessageBox.Show("Lưu ISBN trước khi thêm tác giả ! ", "Thông báo", MessageBoxButtons.OK);
-                return;
-            }
-
+           
             //"SP_ThemTacGia_Sach"
             Program.conn.Close();
             Program.KetNoi();
@@ -570,6 +592,18 @@ namespace ChuyenDeVersion1_6_6
             Program.sqlcmd.ExecuteNonQuery();
             Program.conn.Close();
             this.tACGIA_SACHTableAdapter.Fill(this.qL_THUVIENDataSet.TACGIA_SACH, this.iSBNTextEdit.Text);
+        }
+
+        private void iSBNTextEdit_EditValueChanged(object sender, EventArgs e)
+        {
+          //  MessageBox.Show("FUCK");
+           
+        }
+
+        private void iSBNTextEdit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+            Program.CheckEdit = 1;
         }
     }
 }

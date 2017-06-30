@@ -508,7 +508,7 @@
             this.xrLabel5,
             this.xrLabel6});
             this.GroupHeader1.Dpi = 100F;
-            this.GroupHeader1.HeightF = 30.20834F;
+            this.GroupHeader1.HeightF = 30.20833F;
             this.GroupHeader1.Name = "GroupHeader1";
             // 
             // xrLabel4
