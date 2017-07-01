@@ -384,7 +384,7 @@ namespace ChuyenDeVersion1_6_6
             try
             {
                 DateTime localDate = DateTime.Now;
-                MessageBox.Show("ngay " + localDate);
+                //ssageBox.Show("ngay " + localDate);
                 String strLenh = "Update CT_PHIEUMUON SET TRA=1 , NGAYTRA= '" + localDate  + "'  where MAPHIEU = " + maPhieu + " and MASACH = '" + maSach+"'"
                                      +" Update SACH SET CHOMUON = 0 where MASACH = '"+maSach+"'";
                 Program.conn.Close();

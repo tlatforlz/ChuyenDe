@@ -541,7 +541,13 @@ namespace ChuyenDeVersion1_6_6
                 }
             }else
             {
-                this.tACGIA_SACHTableAdapter.Fill(this.qL_THUVIENDataSet.TACGIA_SACH, newText);
+                try
+                {
+                    this.tACGIA_SACHTableAdapter.Fill(this.qL_THUVIENDataSet.TACGIA_SACH, newText);
+                }catch (Exception er)
+                {
+
+                }
             }
         }
 

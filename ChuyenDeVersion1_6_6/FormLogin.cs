@@ -80,7 +80,7 @@ namespace ChuyenDeVersion1_6_6
                 }
                 Program.mHoten = myReader["ho"].ToString() + myReader["ten"].ToString(); // lấy họ tên 
                 Program.mGroup = myReader["quyen"].ToString(); // lấy nhóm quyền   
-                MessageBox.Show("quyen = " + Program.mGroup+ "\n ten tk = "+Program.mlogin+"\n hoten "+Program.mHoten);
+               // MessageBox.Show("quyen = " + Program.mGroup+ "\n ten tk = "+Program.mlogin+"\n hoten "+Program.mHoten);
                 Program.frmMain.HienThiMenu();
 
                 myReader.Close();

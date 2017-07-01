@@ -77,7 +77,6 @@ namespace ChuyenDeVersion1_6_6
             catch (SqlException ex)
             {
                 Program.conn.Close();
-                MessageBox.Show("FUCK " + ex.Message);
                 return null;
             }
         }
@@ -127,7 +126,7 @@ namespace ChuyenDeVersion1_6_6
             Program.frmMain = new FormMain();
             Program.frmMain.WindowState = FormWindowState.Maximized;
             //KetNoi();
-            Application.Run(Program.frmMain);
+                Application.Run(Program.frmMain);
             //Application.Run(new TanSuatXuatHien());
         }
     }
